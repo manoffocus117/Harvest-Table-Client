@@ -6,6 +6,8 @@ import {
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 
+import Logo from "../assets/logo.png";
+
 const Header = () => {
       // state for scroll effect
       const [is_scrolled, set_is_scrolled] = useState(false);
@@ -34,8 +36,16 @@ const Header = () => {
             >
                   <div className="navbar w-11/12 mx-auto p-0">
                         <div className="navbar-start">
-                              <Link to={"/"} className="text-xl uppercase">
-                                    Harvest Table
+                              <Link
+                                    to={"/"}
+                                    className="text-xl font-medium flex items-end gap-2"
+                              >
+                                    <img
+                                          src={Logo}
+                                          alt="logo"
+                                          className="w-12 h-12"
+                                    />
+                                    <h3>Harvest Table</h3>
                               </Link>
                         </div>
                         <div className="navbar-center hidden lg:flex">

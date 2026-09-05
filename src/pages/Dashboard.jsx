@@ -1,7 +1,15 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
-      return <section className="h-screen bg-amber-500">Dashboard</section>;
+      return (
+            <section className="h-screen">
+                  <Helmet>
+                        <title>Harvest Table | Dashboard</title>
+                  </Helmet>
+                  <h1 className="text-5xl font-medium">Dashboard</h1>
+            </section>
+      );
 };
 
 export default Dashboard;
