@@ -5,6 +5,10 @@
       themes: light --default;
 }
 
+:root {
+      --primary-color: rgb(251, 170, 0);
+}
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
       -webkit-appearance: none;
@@ -48,7 +52,7 @@ section {
 }
 
 a.active {
-      background: rgb(251, 170, 0);
+      background: var(--primary-color);
       color: rgb(255, 255, 255);
       padding: 0.5rem 1.25rem;
       border-radius: 0.25rem;

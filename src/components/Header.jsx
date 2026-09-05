@@ -28,6 +28,8 @@ const Header = () => {
                   <NavLink to={"/our-shop"}>Our Shop</NavLink>
                   <NavLink to={"/contact-us"}>Contact Us</NavLink>
                   <NavLink to={"/dashboard"}>Dashboard</NavLink>
+                  <NavLink to={"/login"}>Login</NavLink>
+                  <NavLink to={"/register"}>Register</NavLink>
             </>
       );
       return (
