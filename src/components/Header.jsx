@@ -3,21 +3,35 @@ import {
       RiShoppingCart2Line,
       RiUser3Line,
 } from "@remixicon/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 
 const Header = () => {
+      // state for scroll effect
+      const [is_scrolled, set_is_scrolled] = useState(false);
+
+      // handle scroll effect
+      useEffect(() => {
+            const handle_scroll = () => {
+                  set_is_scrolled(window.scrollY > 50);
+            };
+            window.addEventListener("scroll", handle_scroll);
+            return () => window.removeEventListener("scroll", handle_scroll);
+      }, []);
+
       const navlink = (
             <>
                   <NavLink to={"/"}>Home</NavLink>
-                  <NavLink to={"/"}>Our Menu</NavLink>
-                  <NavLink to={"/"}>Out Shop</NavLink>
-                  <NavLink to={"/"}>Contact Us</NavLink>
-                  <NavLink to={"/"}>Dashboard</NavLink>
+                  <NavLink to={"/our-menu"}>Our Menu</NavLink>
+                  <NavLink to={"/our-shop"}>Our Shop</NavLink>
+                  <NavLink to={"/contact-us"}>Contact Us</NavLink>
+                  <NavLink to={"/dashboard"}>Dashboard</NavLink>
             </>
       );
       return (
-            <header className="w-full py-2 fixed top-0 z-10">
+            <header
+                  className={`${is_scrolled ? "navbar-blur" : ""}  w-full py-2 fixed top-0 z-10`}
+            >
                   <div className="navbar w-11/12 mx-auto p-0">
                         <div className="navbar-start">
                               <Link to={"/"} className="text-xl uppercase">
@@ -25,7 +39,7 @@ const Header = () => {
                               </Link>
                         </div>
                         <div className="navbar-center hidden lg:flex">
-                              <menu className="menu menu-horizontal gap-10">
+                              <menu className="menu menu-horizontal items-center gap-10">
                                     {navlink}
                               </menu>
                         </div>
