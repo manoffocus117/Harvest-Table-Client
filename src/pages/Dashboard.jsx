@@ -7,7 +7,7 @@ const Dashboard = () => {
                   <Helmet>
                         <title>Harvest Table | Dashboard</title>
                   </Helmet>
-                  <h1 className="text-5xl font-medium">Dashboard</h1>
+                  <h1 className="text-5xl">Dashboard</h1>
             </section>
       );
 };

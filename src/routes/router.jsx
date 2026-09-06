@@ -9,6 +9,7 @@ import Dashboard from "../pages/Dashboard";
 import Error from "../pages/Not_found";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Profile from "../pages/Profile";
 
 const router = createBrowserRouter([
       {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
                   {
                         path: "register",
                         Component: Register,
+                  },
+                  {
+                        path: "profile",
+                        Component: Profile,
                   },
             ],
       },

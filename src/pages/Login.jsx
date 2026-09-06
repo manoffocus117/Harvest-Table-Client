@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 
 const Login = () => {
       return (
-            <section>
+            <section className="h-screen">
                   <Helmet>
                         <title>Harvest Table | Login</title>
                   </Helmet>
