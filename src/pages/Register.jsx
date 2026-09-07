@@ -46,7 +46,7 @@ const Register = () => {
                               </fieldset>
                               <button
                                     type="submit"
-                                    className="btn btn-primary text-black"
+                                    className="btn btn-primary text-white shadow-none hover:bg-transparent hover:text-black hover:border-primary"
                               >
                                     Sign Up
                               </button>
