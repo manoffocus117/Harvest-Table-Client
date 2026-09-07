@@ -36,7 +36,10 @@ h3 {
 p,
 li,
 a,
-span {
+span,
+label,
+input,
+button {
       font-family: "Poppins", sans-serif;
 }
 
