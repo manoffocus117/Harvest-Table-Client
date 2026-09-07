@@ -2,6 +2,8 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import Register_bg from "../assets/reservation/wood-grain-pattern-gray1x.png";
 import Register_side_image from "../assets/others/authentication2.png";
+import { Link } from "react-router";
+import Sign_in_with from "../components/Sign_in_with";
 
 const Register = () => {
       return (
@@ -42,10 +44,20 @@ const Register = () => {
                                           placeholder="Enter your Password"
                                     />
                               </fieldset>
-                              <button type="submit" className="btn btn-primary">
+                              <button
+                                    type="submit"
+                                    className="btn btn-primary text-black"
+                              >
                                     Sign Up
                               </button>
                         </form>
+                        <p className="mt-5 text-primary">
+                              Already have an account?{" "}
+                              <Link to={"/login"} className="underline">
+                                    Sign In
+                              </Link>
+                        </p>
+                        <Sign_in_with />
                   </div>
                   <div className="w-full md:w-8/12 flex flex-row justify-end">
                         <figure>

@@ -2,6 +2,8 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import Login_bg from "../assets/reservation/wood-grain-pattern-gray1x.png";
 import Login_side_image from "../assets/others/authentication2.png";
+import { Link } from "react-router";
+import Sign_in_with from "../components/Sign_in_with";
 
 const Login = () => {
       return (
@@ -54,10 +56,20 @@ const Login = () => {
                                           placeholder="Enter Recaptcha"
                                     />
                               </fieldset>
-                              <button type="submit" className="btn btn-primary">
+                              <button
+                                    type="submit"
+                                    className="btn btn-primary text-black"
+                              >
                                     Sign In
                               </button>
                         </form>
+                        <p className="mt-5 text-primary">
+                              Don't have an account?{" "}
+                              <Link to={"/register"} className="underline">
+                                    Sign Up
+                              </Link>
+                        </p>
+                        <Sign_in_with />
                   </div>
             </section>
       );
