@@ -104,3 +104,16 @@ a.active {
       width: 1rem;
       border-radius: 50%;
 }
+
+@media (max-width: 400px) {
+      .swiper {
+            height: 200px;
+      }
+      .swiper-wrapper {
+            height: 200px;
+      }
+      .swiper-pagination-bullet,
+      .swiper-pagination-bullet-active {
+            display: none;
+      }
+}
