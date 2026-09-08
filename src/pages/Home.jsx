@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Helmet } from "react-helmet-async";
 import Image_1 from "../assets/home/01.jpg";
 import Image_2 from "../assets/home/02.jpg";
@@ -9,13 +9,7 @@ import Image_6 from "../assets/home/06.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
 const Home = () => {
-      const prev_ref = useRef(null);
-      const next_ref = useRef(null);
       const images = [
             {
                   id: 1,
@@ -54,23 +48,27 @@ const Home = () => {
                         <title>Harvest Table | Home</title>
                   </Helmet>
                   <Swiper
-                        navigation={{
-                              prevEl: ".swiper-button-prev",
-                              nextEl: ".swiper-button-next",
+                        pagination={{
+                              clickable: true,
+                              dynamicBullets: true,
                         }}
-                        pagination={true}
                         effect="fade"
-                        autoplay
-                        delay={3000}
+                        fadeEffect={{ crossFade: true }}
+                        autoplay={{
+                              delay: 3000,
+                              disableOnInteraction: false,
+                        }}
                         loop
-                        modules={[Navigation, Pagination, EffectFade, Autoplay]}
+                        modules={[Pagination, EffectFade, Autoplay]}
+                        className="swiper"
                   >
                         {images.map((image) => (
-                              <SwiperSlide>
-                                    <figure key={image.id}>
+                              <SwiperSlide key={image.id}>
+                                    <figure className="m-0 w-full h-full">
                                           <img
                                                 src={image.image_url}
                                                 alt={image.name}
+                                                className="rounded-xl w-full h-full object-cover"
                                           />
                                     </figure>
                               </SwiperSlide>
