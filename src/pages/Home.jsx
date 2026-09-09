@@ -8,6 +8,7 @@ import Image_5 from "../assets/home/05.png";
 import Image_6 from "../assets/home/06.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
+import Menu from "../components/Menu";
 
 const Home = () => {
       const images = [
@@ -74,6 +75,15 @@ const Home = () => {
                               </SwiperSlide>
                         ))}
                   </Swiper>
+                  <div className="my-25">
+                        <h3 className="text-xl text-center text-primary">
+                              ---From 09:00am to 10:00pm---
+                        </h3>
+                        <span className="divider"></span>
+                        <h1 className="text-5xl text-center">ORDER ONLINE</h1>
+                        <span className="divider"></span>
+                  </div>
+                  <Menu />
             </section>
       );
 };

@@ -92,7 +92,7 @@ a.active {
 .swiper-pagination-bullet {
       width: 1rem;
       height: 1rem;
-      background-color: #ffffff;
+      background-color: #989898;
       opacity: 0.6;
       transition: all 0.3s ease;
       margin-bottom: 20px;
