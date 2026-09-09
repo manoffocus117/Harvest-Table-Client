@@ -9,6 +9,7 @@ import Image_6 from "../assets/home/06.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 import Menu from "../components/Menu";
+import Banner from "../components/Banner";
 
 const Home = () => {
       const images = [
@@ -84,6 +85,7 @@ const Home = () => {
                         <span className="divider"></span>
                   </div>
                   <Menu />
+                  <Banner />
             </section>
       );
 };
