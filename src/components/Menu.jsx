@@ -53,7 +53,7 @@ const Menu = () => {
                         slidesPerView={4}
                         spaceBetween={30}
                         breakpoints={{
-                              375: {
+                              374: {
                                     slidesPerView: 1,
                                     spaceBetween: 20,
                               },
