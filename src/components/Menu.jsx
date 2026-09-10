@@ -50,15 +50,15 @@ const Menu = () => {
                         autoplay={{
                               delay: 3000,
                         }}
-                        slidesPerView={4}
+                        slidesPerView={1}
                         spaceBetween={30}
                         breakpoints={{
-                              374: {
-                                    slidesPerView: 1,
+                              640: {
+                                    slidesPerView: 2,
                                     spaceBetween: 20,
                               },
                               768: {
-                                    slidesPerView: 2,
+                                    slidesPerView: 3,
                                     spaceBetween: 30,
                               },
                               1024: {
