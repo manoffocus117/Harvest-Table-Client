@@ -8,7 +8,7 @@ import Image_5 from "../assets/home/05.png";
 import Image_6 from "../assets/home/06.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
-import Menu from "../components/Menu";
+import Category from "../components/Category";
 import Banner from "../components/Banner";
 
 const Home = () => {
@@ -86,7 +86,7 @@ const Home = () => {
                         </h1>
                         <span className="divider"></span>
                   </div>
-                  <Menu />
+                  <Category />
                   <Banner />
             </section>
       );

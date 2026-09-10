@@ -8,7 +8,7 @@ import Slide_6 from "../assets/home/slide3.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 
-const Menu = () => {
+const Category = () => {
       const slides = [
             {
                   id: 1,
@@ -67,12 +67,12 @@ const Menu = () => {
                               },
                         }}
                         modules={[Pagination, Autoplay]}
-                        className="swiper h-150!"
+                        className="swiper h-140!"
                   >
                         {slides.map((slide) => (
                               <SwiperSlide
                                     key={slide.id}
-                                    className="menu-swiper-slide h-full hover:image-full"
+                                    className="category-swiper-slide h-full hover:image-full"
                               >
                                     <figure className="relative">
                                           <img
@@ -81,7 +81,7 @@ const Menu = () => {
                                                 className="rounded-xl w-full h-full object-cover"
                                           />
                                     </figure>
-                                    <h3 className="absolute top-[70%] left-[39%] text-3xl text-center text-white">
+                                    <h3 className="absolute top-[80%] left-[32%] text-2xl text-center text-white bg-primary px-8 py-2 rounded">
                                           {slide.name}
                                     </h3>
                               </SwiperSlide>
@@ -91,4 +91,4 @@ const Menu = () => {
       );
 };
 
-export default Menu;
+export default Category;
