@@ -74,6 +74,10 @@ a.active {
       height: 100vh;
 }
 
+.menu-swiper-slide {
+      height: 37.5rem;
+}
+
 .swiper-slide {
       overflow: hidden;
       border-radius: 0.75rem;
@@ -106,11 +110,9 @@ a.active {
 }
 
 @media (max-width: 400px) {
-      .swiper {
-            height: 200px;
-      }
+      .swiper,
       .swiper-wrapper {
-            height: 200px;
+            height: 250px;
       }
       .swiper-pagination-bullet,
       .swiper-pagination-bullet-active {

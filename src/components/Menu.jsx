@@ -72,7 +72,7 @@ const Menu = () => {
                         {slides.map((slide) => (
                               <SwiperSlide
                                     key={slide.id}
-                                    className="h-full hover:image-full"
+                                    className="menu-swiper-slide h-full hover:image-full"
                               >
                                     <figure className="relative">
                                           <img

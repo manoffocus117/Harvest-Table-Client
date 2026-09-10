@@ -81,7 +81,9 @@ const Home = () => {
                               ---From 09:00am to 10:00pm---
                         </h3>
                         <span className="divider"></span>
-                        <h1 className="text-5xl text-center">ORDER ONLINE</h1>
+                        <h1 className="text-3xl md:text-5xl text-center">
+                              ORDER ONLINE
+                        </h1>
                         <span className="divider"></span>
                   </div>
                   <Menu />
