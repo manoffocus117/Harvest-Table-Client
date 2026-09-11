@@ -42,52 +42,50 @@ const Category = () => {
             },
       ];
       return (
-            <div>
-                  <Swiper
-                        pagination={{
-                              clickable: true,
-                        }}
-                        autoplay={{
-                              delay: 3000,
-                        }}
-                        slidesPerView={1}
-                        spaceBetween={30}
-                        breakpoints={{
-                              640: {
-                                    slidesPerView: 2,
-                                    spaceBetween: 20,
-                              },
-                              768: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 30,
-                              },
-                              1024: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 30,
-                              },
-                        }}
-                        modules={[Pagination, Autoplay]}
-                        className="swiper h-140!"
-                  >
-                        {slides.map((slide) => (
-                              <SwiperSlide
-                                    key={slide.id}
-                                    className="category-swiper-slide h-full hover:image-full"
-                              >
-                                    <figure className="relative">
-                                          <img
-                                                src={slide.image}
-                                                alt={slide.name}
-                                                className="rounded-xl w-full h-full object-cover"
-                                          />
-                                    </figure>
-                                    <h3 className="absolute top-[80%] left-[32%] text-2xl text-center text-white bg-primary px-8 py-2 rounded">
-                                          {slide.name}
-                                    </h3>
-                              </SwiperSlide>
-                        ))}
-                  </Swiper>
-            </div>
+            <Swiper
+                  pagination={{
+                        clickable: true,
+                  }}
+                  autoplay={{
+                        delay: 3000,
+                  }}
+                  slidesPerView={1}
+                  spaceBetween={30}
+                  breakpoints={{
+                        640: {
+                              slidesPerView: 2,
+                              spaceBetween: 20,
+                        },
+                        768: {
+                              slidesPerView: 3,
+                              spaceBetween: 30,
+                        },
+                        1024: {
+                              slidesPerView: 4,
+                              spaceBetween: 30,
+                        },
+                  }}
+                  modules={[Pagination, Autoplay]}
+                  className="swiper h-140!"
+            >
+                  {slides.map((slide) => (
+                        <SwiperSlide
+                              key={slide.id}
+                              className="category-swiper-slide h-full hover:image-full"
+                        >
+                              <figure className="relative">
+                                    <img
+                                          src={slide.image}
+                                          alt={slide.name}
+                                          className="rounded-xl w-full h-full object-cover"
+                                    />
+                              </figure>
+                              <h3 className="absolute top-[80%] left-[32%] text-2xl text-center text-white bg-primary px-8 py-2 rounded">
+                                    {slide.name}
+                              </h3>
+                        </SwiperSlide>
+                  ))}
+            </Swiper>
       );
 };
 

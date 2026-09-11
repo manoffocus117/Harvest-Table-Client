@@ -10,6 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 import Category from "../components/Category";
 import Banner from "../components/Banner";
+import Title from "../components/Title";
 
 const Home = () => {
       const images = [
@@ -76,16 +77,10 @@ const Home = () => {
                               </SwiperSlide>
                         ))}
                   </Swiper>
-                  <div className="my-25">
-                        <h3 className="text-xl text-center text-primary">
-                              ---From 09:00am to 10:00pm---
-                        </h3>
-                        <span className="divider"></span>
-                        <h1 className="text-3xl md:text-5xl text-center">
-                              ORDER ONLINE
-                        </h1>
-                        <span className="divider"></span>
-                  </div>
+                  <Title
+                        sub_title={"---From 11:00am to 10:00pm---"}
+                        title={"ORDER ONLINE"}
+                  />
                   <Category />
                   <Banner />
             </section>
