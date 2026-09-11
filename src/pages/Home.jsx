@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 import Category from "../sections/Category";
 import Banner from "../sections/Banner";
-import Title from "../components/Title";
+import Menu from "../sections/Menu";
 
 const Home = () => {
       const images = [
@@ -79,12 +79,9 @@ const Home = () => {
                               ))}
                         </Swiper>
                   </section>
-                  <Title
-                        sub_title={"From 09:00am to 10:00pm"}
-                        title={"ORDER ONLINE"}
-                  />
                   <Category />
                   <Banner />
+                  <Menu />
             </>
       );
 };

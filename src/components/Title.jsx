@@ -2,7 +2,7 @@ import React from "react";
 
 const Title = ({ sub_title, title }) => {
       return (
-            <div className="my-25 w-4/12 mx-auto">
+            <div className="my-12 w-4/12 mx-auto">
                   <h3 className="text-xl text-center text-primary">
                         --- {sub_title} ---
                   </h3>
