@@ -3,8 +3,8 @@ import Banner_image from "../assets/home/chef-service.jpg";
 
 const Banner = () => {
       return (
-            <div
-                  className="my-25 p-10 md:p-25 rounded-xl"
+            <section
+                  className="p-10 md:p-25 rounded-xl"
                   style={{
                         backgroundImage: `url(${Banner_image})`,
                         backgroundRepeat: "no-repeat",
@@ -20,7 +20,7 @@ const Banner = () => {
                               odit perspiciatis ad officia.
                         </p>
                   </div>
-            </div>
+            </section>
       );
 };
 

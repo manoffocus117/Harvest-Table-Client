@@ -8,8 +8,8 @@ import Image_5 from "../assets/home/05.png";
 import Image_6 from "../assets/home/06.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
-import Category from "../components/Category";
-import Banner from "../components/Banner";
+import Category from "../sections/Category";
+import Banner from "../sections/Banner";
 import Title from "../components/Title";
 
 const Home = () => {
@@ -46,44 +46,46 @@ const Home = () => {
             },
       ];
       return (
-            <section className="">
+            <>
                   <Helmet>
                         <title>Harvest Table | Home</title>
                   </Helmet>
-                  <Swiper
-                        pagination={{
-                              clickable: true,
-                              dynamicBullets: true,
-                        }}
-                        effect="fade"
-                        fadeEffect={{ crossFade: true }}
-                        autoplay={{
-                              delay: 3000,
-                              disableOnInteraction: false,
-                        }}
-                        loop
-                        modules={[Pagination, EffectFade, Autoplay]}
-                        className="swiper"
-                  >
-                        {images.map((image) => (
-                              <SwiperSlide key={image.id}>
-                                    <figure className="m-0 w-full h-full">
-                                          <img
-                                                src={image.image_url}
-                                                alt={image.name}
-                                                className="rounded-xl w-full h-full object-cover"
-                                          />
-                                    </figure>
-                              </SwiperSlide>
-                        ))}
-                  </Swiper>
+                  <section>
+                        <Swiper
+                              pagination={{
+                                    clickable: true,
+                                    dynamicBullets: true,
+                              }}
+                              effect="fade"
+                              fadeEffect={{ crossFade: true }}
+                              autoplay={{
+                                    delay: 3000,
+                                    disableOnInteraction: false,
+                              }}
+                              loop
+                              modules={[Pagination, EffectFade, Autoplay]}
+                              className="swiper"
+                        >
+                              {images.map((image) => (
+                                    <SwiperSlide key={image.id}>
+                                          <figure className="m-0 w-full h-full">
+                                                <img
+                                                      src={image.image_url}
+                                                      alt={image.name}
+                                                      className="rounded-xl w-full h-full object-cover"
+                                                />
+                                          </figure>
+                                    </SwiperSlide>
+                              ))}
+                        </Swiper>
+                  </section>
                   <Title
-                        sub_title={"---From 11:00am to 10:00pm---"}
+                        sub_title={"From 09:00am to 10:00pm"}
                         title={"ORDER ONLINE"}
                   />
                   <Category />
                   <Banner />
-            </section>
+            </>
       );
 };
 
