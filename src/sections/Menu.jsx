@@ -21,7 +21,7 @@ const Menu = () => {
       return (
             <section className="flex flex-col items-center">
                   <Title sub_title={"Check it out"} title={"Form our menu"} />
-                  <div className="grid grid-cols-2 gap-10">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                         {menu.map((item) => (
                               <Menu_item key={item._id} item={item} />
                         ))}
