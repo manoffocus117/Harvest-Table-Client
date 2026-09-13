@@ -9,6 +9,9 @@ const Featured = () => {
                   className="hero min-h-screen rounded-xl"
                   style={{
                         backgroundImage: `url(${Featured_image})`,
+                        backgroundAttachment: "fixed",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
                   }}
             >
                   <div className="hero-overlay rounded-xl"></div>
