@@ -13,6 +13,7 @@ import Banner from "../sections/Banner";
 import Menu from "../sections/Menu";
 import Chef_recommends from "../sections/Chef_recommends";
 import Featured from "../sections/Featured";
+import Testimonials from "../sections/Testimonials";
 
 const Home = () => {
       const images = [
@@ -86,6 +87,7 @@ const Home = () => {
                   <Menu />
                   <Chef_recommends />
                   <Featured />
+                  <Testimonials />
             </>
       );
 };

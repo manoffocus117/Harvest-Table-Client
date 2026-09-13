@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
+import "@smastrom/react-rating/style.css";
 import "./style.css";
 
 import router from "./routes/router";
