@@ -12,6 +12,7 @@ import Category from "../sections/Category";
 import Banner from "../sections/Banner";
 import Menu from "../sections/Menu";
 import Chef_recommends from "../sections/Chef_recommends";
+import Featured from "../sections/Featured";
 
 const Home = () => {
       const images = [
@@ -84,6 +85,7 @@ const Home = () => {
                   <Banner />
                   <Menu />
                   <Chef_recommends />
+                  <Featured />
             </>
       );
 };
