@@ -83,7 +83,7 @@ const Home = () => {
                         </Swiper>
                   </section>
                   <Category />
-                  <Banner />
+                  <Banner bg_color={"bg-white"} />
                   <Menu />
                   <Chef_recommends />
                   <Featured />
