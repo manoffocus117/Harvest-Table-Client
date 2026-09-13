@@ -11,6 +11,7 @@ import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 import Category from "../sections/Category";
 import Banner from "../sections/Banner";
 import Menu from "../sections/Menu";
+import Chef_recommends from "../sections/Chef_recommends";
 
 const Home = () => {
       const images = [
@@ -82,6 +83,7 @@ const Home = () => {
                   <Category />
                   <Banner />
                   <Menu />
+                  <Chef_recommends />
             </>
       );
 };
