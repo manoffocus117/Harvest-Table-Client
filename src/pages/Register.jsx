@@ -8,8 +8,12 @@ import Sign_in_with from "../components/Sign_in_with";
 const Register = () => {
       return (
             <section
-                  className="shadow-xl rounded-xl flex flex-col-reverse md:flex-row items-center justify-between gap-20 md:gap-0 p-5 md:p-10"
-                  style={{ backgroundImage: `url(${Register_bg})` }}
+                  className="shadow-md rounded-xl flex flex-col-reverse md:flex-row items-center justify-between gap-20 md:gap-0 p-5 md:p-10"
+                  style={{
+                        backgroundImage: `url(${Register_bg})`,
+                        backgroundAttachment: "fixed",
+                        backgroundPosition: "center",
+                  }}
             >
                   <Helmet>
                         <title>Harvest Table | Register</title>
