@@ -4,7 +4,7 @@ import Button from "./Button";
 const Product_card = ({ item }) => {
       const { name, image, recipe } = item;
       return (
-            <div className="card bg-base-100 shadow-sm">
+            <div className="card bg-base-100 shadow-sm hover:scale-105">
                   <figure>
                         <img src={image} alt={name} />
                   </figure>

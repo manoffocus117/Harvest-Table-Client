@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Title from "../components/Title";
+import Title from "./../../../components/Title";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import { RiDoubleQuotesL } from "@remixicon/react";

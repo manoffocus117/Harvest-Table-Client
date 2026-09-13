@@ -1,7 +1,7 @@
 import React from "react";
 import { createBrowserRouter } from "react-router";
 import Root_layout from "../layout/Root_layout";
-import Home from "../pages/Home";
+import Home from "../pages/home/Home";
 import Our_menu from "../pages/Our_menu";
 import Our_shop from "../pages/Our_shop";
 import Contact_us from "../pages/Contact_us";

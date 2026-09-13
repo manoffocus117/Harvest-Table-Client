@@ -1,13 +1,13 @@
 import React from "react";
-import Slide_1 from "../assets/home/slide1.jpg";
-import Slide_2 from "../assets/home/slide2.jpg";
-import Slide_3 from "../assets/home/slide3.jpg";
-import Slide_4 from "../assets/home/slide4.jpg";
-import Slide_5 from "../assets/home/slide2.jpg";
-import Slide_6 from "../assets/home/slide3.jpg";
+import Slide_1 from "../../../assets/home/slide1.jpg";
+import Slide_2 from "../../../assets/home/slide2.jpg";
+import Slide_3 from "../../../assets/home/slide3.jpg";
+import Slide_4 from "../../../assets/home/slide4.jpg";
+import Slide_5 from "../../../assets/home/slide2.jpg";
+import Slide_6 from "../../../assets/home/slide3.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, Pagination } from "swiper/modules";
-import Title from "../components/Title";
+import { Autoplay, Pagination } from "swiper/modules";
+import Title from "./../../../components/Title";
 
 const Category = () => {
       const slides = [

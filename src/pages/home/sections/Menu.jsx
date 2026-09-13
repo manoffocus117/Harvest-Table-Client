@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Title from "../components/Title";
-import Menu_item from "../components/Menu_item";
-import Button from "../components/Button";
+import Title from "./../../../components/Title";
+import Menu_item from "../../../components/Menu_item";
+import Button from "../../../components/Button";
 
 const Menu = () => {
       // state for menu

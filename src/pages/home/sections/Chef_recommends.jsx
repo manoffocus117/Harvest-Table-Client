@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Title from "./../components/Title";
-import Product_card from "../components/Product_card";
+import Title from "./../../../components/Title";
+import Product_card from "./../../../components/Product_card";
 
 const Chef_recommends = () => {
       // state for recommends

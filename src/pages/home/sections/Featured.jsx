@@ -1,7 +1,6 @@
 import React from "react";
-import Title from "../components/Title";
-import Featured_image from "../assets/home/featured.jpg";
-import Button from "../components/Button";
+import Title from "./../../../components/Title";
+import Featured_image from "../../../assets/home/featured.jpg";
 
 const Featured = () => {
       return (
@@ -16,10 +15,16 @@ const Featured = () => {
             >
                   <div className="hero-overlay rounded-xl"></div>
                   <div className="hero-content w-full md:w-8/12 flex-col text-neutral-content">
-                        <Title
-                              sub_title={"Check it out"}
-                              title={"Featured item"}
-                        />
+                        <div className="my-12 w-full md:w-4/12 mx-auto">
+                              <h3 className="text-xl text-center text-primary">
+                                    --- Check it out ---
+                              </h3>
+                              <span className="divider before:bg-white after:bg-white"></span>
+                              <h1 className="text-3xl md:text-5xl text-center">
+                                    From our menu
+                              </h1>
+                              <span className="divider before:bg-white after:bg-white"></span>
+                        </div>
                         <div className="flex flex-col md:flex-row items-center gap-10">
                               <figure className="w-full md:w-162">
                                     <img
@@ -42,7 +47,9 @@ const Featured = () => {
                                           tempore consequatur consequuntur omnis
                                           ullam maxime tenetur.
                                     </p>
-                                    <Button name={"Read more"} />
+                                    <button className="btn bg-transparent shadow-none border-0 border-b-2 border-white text-white px-4 py-2 rounded-md capitalize hover:bg-primary hover:border-none">
+                                          Read more
+                                    </button>
                               </div>
                         </div>
                   </div>
