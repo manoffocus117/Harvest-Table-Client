@@ -58,6 +58,7 @@ const Our_menu = () => {
                         bg_img={Salad_bg}
                         title={"Salad"}
                         subtitle={"this is some salad"}
+                        button_text={"order salad"}
                   />
 
                   {/* soup items */}
