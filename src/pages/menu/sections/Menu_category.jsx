@@ -19,7 +19,11 @@ const Menu_category = ({ items, title, subtitle, bg_img }) => {
                                     <Menu_item key={item._id} item={item} />
                               ))}
                         </div>
-                        <Button name={`Order ${title}`} />
+                        {title ? (
+                              <Button name={`Order ${title}`} />
+                        ) : (
+                              <Button name={"Checkout today's offer"} />
+                        )}
                   </section>
             </>
       );
