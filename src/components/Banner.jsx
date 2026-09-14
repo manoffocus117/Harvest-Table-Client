@@ -1,10 +1,10 @@
 import React from "react";
 import Banner_image from "../assets/home/chef-service.jpg";
 
-const Banner = ({ bg_color }) => {
+const Banner = ({ bg_color, text_color, title, desc }) => {
       return (
             <section
-                  className="p-10 md:p-25 rounded-xl"
+                  className={`p-10 md:p-25 rounded-xl ${text_color}`}
                   style={{
                         backgroundImage: `url("${Banner_image}")`,
                         backgroundRepeat: "no-repeat",
@@ -15,14 +15,8 @@ const Banner = ({ bg_color }) => {
                   <div
                         className={`p-10 md:p-25 ${bg_color} rounded-xl space-y-5 text-center`}
                   >
-                        <h1 className="text-3xl md:text-5xl">Harvest Table</h1>
-                        <p>
-                              Lorem ipsum dolor sit amet consectetur adipisicing
-                              elit. Adipisci doloribus eos, soluta accusamus
-                              optio recusandae commodi consequatur? Voluptas,
-                              in? Unde vitae ipsum optio aliquid ipsa, nostrum
-                              odit perspiciatis ad officia.
-                        </p>
+                        <h1 className="text-3xl md:text-5xl">{title}</h1>
+                        <p>{desc}</p>
                   </div>
             </section>
       );

@@ -4,17 +4,22 @@ import Hero from "../../components/Hero";
 
 import Bg_image from "../../assets/menu/banner3.jpg";
 import useMenu from "./../../hooks/useMenu";
-import Todays_offer from "./sections/Todays_offer";
+import Title from "./../../components/Title";
+import Menu_category from "./sections/Menu_category";
+
+import Dessert_bg from "../../assets/menu/dessert-bg.jpeg";
+import Pizza_bg from "../../assets/menu/pizza-bg.jpg";
+import Salad_bg from "../../assets/menu/salad-bg.jpg";
+import Soup_bg from "../../assets/menu/soup-bg.jpg";
 
 const Our_menu = () => {
       const [menu] = useMenu();
 
       const todays_offer = menu.filter((item) => item.category === "offered");
-      const dessert = menu.filter((item) => item.category === "dessert");
+      const desserts = menu.filter((item) => item.category === "dessert");
       const pizza = menu.filter((item) => item.category === "pizza");
       const salad = menu.filter((item) => item.category === "salad");
       const soup = menu.filter((item) => item.category === "soup");
-      const drinks = menu.filter((item) => item.category === "drinks");
 
       return (
             <>
@@ -26,7 +31,42 @@ const Our_menu = () => {
                         title={"Our menu"}
                         subtitle={"Would you like to try a dish?"}
                   />
-                  <Todays_offer todays_offer={todays_offer} />
+                  {/* today's offer */}
+                  <Title title={"Today's offer"} sub_title={"Don't miss"} />
+                  {/* todays offer items */}
+                  <Menu_category items={todays_offer} />
+
+                  {/* desserts items */}
+                  <Menu_category
+                        items={desserts}
+                        bg_img={Dessert_bg}
+                        title={"Dessert"}
+                        subtitle={"this is some desserts"}
+                  />
+
+                  {/* pizza items */}
+                  <Menu_category
+                        items={pizza}
+                        bg_img={Pizza_bg}
+                        title={"Pizza"}
+                        subtitle={"this is some pizza"}
+                  />
+
+                  {/* salad items */}
+                  <Menu_category
+                        items={salad}
+                        bg_img={Salad_bg}
+                        title={"Salad"}
+                        subtitle={"this is some salad"}
+                  />
+
+                  {/* soup items */}
+                  <Menu_category
+                        items={soup}
+                        bg_img={Soup_bg}
+                        title={"Soup"}
+                        subtitle={"this is some soup"}
+                  />
             </>
       );
 };

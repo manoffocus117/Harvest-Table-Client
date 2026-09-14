@@ -16,7 +16,14 @@ const Home = () => {
                   </Helmet>
                   <Hero />
                   <Category />
-                  <Banner bg_color={"bg-white"} />
+                  <Banner
+                        bg_color={"bg-white"}
+                        text_color={"text-black"}
+                        title={"Harvest Table"}
+                        desc={
+                              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci doloribus eos, soluta accusamus optio recusandae commodi consequatur? Voluptas, in? Unde vitae ipsum optio aliquid ipsa, nostrum odit perspiciatis ad officia."
+                        }
+                  />
                   <Menu />
                   <Chef_recommends />
                   <Featured />
