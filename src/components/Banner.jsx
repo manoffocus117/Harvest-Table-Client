@@ -6,7 +6,7 @@ const Banner = ({ bg_color }) => {
             <section
                   className="p-10 md:p-25 rounded-xl"
                   style={{
-                        backgroundImage: `url(${Banner_image})`,
+                        backgroundImage: `url("${Banner_image}")`,
                         backgroundRepeat: "no-repeat",
                         backgroundAttachment: "fixed",
                         backgroundPosition: "center",

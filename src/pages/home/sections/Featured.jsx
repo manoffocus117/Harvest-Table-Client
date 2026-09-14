@@ -1,5 +1,4 @@
 import React from "react";
-import Title from "./../../../components/Title";
 import Featured_image from "../../../assets/home/featured.jpg";
 
 const Featured = () => {
@@ -7,7 +6,7 @@ const Featured = () => {
             <section
                   className="hero min-h-screen rounded-xl"
                   style={{
-                        backgroundImage: `url(${Featured_image})`,
+                        backgroundImage: `url("${Featured_image}")`,
                         backgroundAttachment: "fixed",
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "center",
