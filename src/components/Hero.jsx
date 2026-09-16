@@ -13,10 +13,12 @@ const Hero = ({ bg_url, title, subtitle }) => {
             >
                   <div className="hero-content w-9/12 py-35 rounded-xl bg-black/60 text-white text-center">
                         <div className="max-w-md">
-                              <h1 className="mb-5 text-8xl font-bold">
+                              <h1 className="mb-5 text-5xl md:text-8xl font-bold">
                                     {title}
                               </h1>
-                              <p className="mb-5 text-2xl">{subtitle}</p>
+                              <p className="mb-5 text-md md:text-2xl">
+                                    {subtitle}
+                              </p>
                         </div>
                   </div>
             </section>

@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router";
 import Root_layout from "../layout/Root_layout";
 import Home from "../pages/home/Home";
 import Our_menu from "../pages/menu/Our_menu";
-import Our_shop from "../pages/shop/Our_shop";
+import Order from "../pages/order/Order";
 import Contact_us from "../pages/Contact_us";
 import Dashboard from "../pages/Dashboard";
 import Error from "../pages/Not_found";
@@ -25,8 +25,8 @@ const router = createBrowserRouter([
                         Component: Our_menu,
                   },
                   {
-                        path: "our-shop",
-                        Component: Our_shop,
+                        path: "order",
+                        Component: Order,
                   },
                   {
                         path: "contact-us",
