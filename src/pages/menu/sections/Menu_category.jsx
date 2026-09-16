@@ -2,6 +2,7 @@ import React from "react";
 import Menu_item from "../../../components/Menu_item";
 import Hero from "../../../components/Hero";
 import Button from "../../../components/Button";
+import { Link } from "react-router";
 
 const Menu_category = ({ items, title, subtitle, bg_img }) => {
       return (
@@ -20,9 +21,16 @@ const Menu_category = ({ items, title, subtitle, bg_img }) => {
                               ))}
                         </div>
                         {title ? (
-                              <Button name={`Order ${title}`} />
+                              <Link
+                                    to={`/order/${title}`}
+                                    className="btn bg-transparent shadow-none border-0 border-b-2 border-black px-4 py-2 rounded-md capitalize hover:bg-primary hover:text-white hover:border-none"
+                              >
+                                    {`Order ${title}`}
+                              </Link>
                         ) : (
-                              <Button name={"Checkout today's offer"} />
+                              <Link className="btn bg-transparent shadow-none border-0 border-b-2 border-black px-4 py-2 rounded-md capitalize hover:bg-primary hover:text-white hover:border-none">
+                                    {"Checkout today's offer"}
+                              </Link>
                         )}
                   </section>
             </>

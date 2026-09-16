@@ -25,7 +25,7 @@ const router = createBrowserRouter([
                         Component: Our_menu,
                   },
                   {
-                        path: "order",
+                        path: "order/:category",
                         Component: Order,
                   },
                   {

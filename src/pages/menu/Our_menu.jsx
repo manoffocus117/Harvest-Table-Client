@@ -40,7 +40,7 @@ const Our_menu = () => {
                   <Menu_category
                         items={desserts}
                         bg_img={Dessert_bg}
-                        title={"Dessert"}
+                        title={"dessert"}
                         subtitle={"this is some desserts"}
                   />
 
@@ -48,7 +48,7 @@ const Our_menu = () => {
                   <Menu_category
                         items={pizza}
                         bg_img={Pizza_bg}
-                        title={"Pizza"}
+                        title={"pizza"}
                         subtitle={"this is some pizza"}
                   />
 
@@ -56,7 +56,7 @@ const Our_menu = () => {
                   <Menu_category
                         items={salad}
                         bg_img={Salad_bg}
-                        title={"Salad"}
+                        title={"salad"}
                         subtitle={"this is some salad"}
                         button_text={"order salad"}
                   />
@@ -65,7 +65,7 @@ const Our_menu = () => {
                   <Menu_category
                         items={soup}
                         bg_img={Soup_bg}
-                        title={"Soup"}
+                        title={"soup"}
                         subtitle={"this is some soup"}
                   />
             </>

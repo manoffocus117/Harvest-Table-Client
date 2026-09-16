@@ -9,15 +9,20 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import Salad from "./sections/Salad";
 import Pizza from "./sections/Pizza";
 import Soups from "./sections/Soups";
+import { useParams } from "react-router";
 
 const Our_shop = () => {
+      const categories = ["dessert", "pizza", "salad", "soup"];
+      const { category } = useParams();
+      const initial_index = categories.indexOf(category);
+
       const [menu] = useMenu();
+      const [tab_index, set_tab_index] = useState(initial_index);
+
       const desserts = menu.filter((item) => item.category === "dessert");
       const pizza = menu.filter((item) => item.category === "pizza");
       const salad = menu.filter((item) => item.category === "salad");
       const soup = menu.filter((item) => item.category === "soup");
-
-      const [tab_index, set_tab_index] = useState(0);
 
       return (
             <>
@@ -35,19 +40,19 @@ const Our_shop = () => {
                               onSelect={(index) => set_tab_index(index)}
                         >
                               <TabList>
-                                    <Tab>Desserts</Tab>
-                                    <Tab>Salad</Tab>
+                                    <Tab>Dessert</Tab>
                                     <Tab>Pizza</Tab>
+                                    <Tab>Salad</Tab>
                                     <Tab>Soups</Tab>
                               </TabList>
                               <TabPanel>
                                     <Desserts desserts={desserts} />
                               </TabPanel>
                               <TabPanel>
-                                    <Salad salad={salad} />
+                                    <Pizza pizza={pizza} />
                               </TabPanel>
                               <TabPanel>
-                                    <Pizza pizza={pizza} />
+                                    <Salad salad={salad} />
                               </TabPanel>
                               <TabPanel>
                                     <Soups soup={soup} />
