@@ -10,7 +10,7 @@ const Testimonials = () => {
       const [testimonials, set_testimonials] = useState([]);
       // loading testimonials data
       useEffect(() => {
-            fetch("reviews.json")
+            fetch("http://localhost:3000/reviews")
                   .then((res) => res.json())
                   .then((data) => set_testimonials(data));
       }, []);
