@@ -8,7 +8,7 @@ const useMenu = () => {
       const [loading, set_loading] = useState(true);
       // loading menu data
       useEffect(() => {
-            fetch("menu.json")
+            fetch("http://localhost:3000/menu")
                   .then((res) => res.json())
                   .then((data) => {
                         set_menu(data);
