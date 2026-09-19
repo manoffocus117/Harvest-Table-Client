@@ -14,6 +14,7 @@
     "@smastrom/react-rating": "^1.5.0",
     "@tailwindcss/vite": "^4.3.3",
     "daisyui": "^5.7.28",
+    "firebase": "^12.19.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-helmet-async": "^3.0.0",
