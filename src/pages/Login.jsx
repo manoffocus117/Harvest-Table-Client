@@ -78,8 +78,10 @@ const Login = () => {
                                           placeholder="Password"
                                     />
                               </fieldset>
-                              <fieldset className="fieldset space-y-3">
-                                    <label htmlFor="recaptcha">Recaptcha</label>
+                              <fieldset className="fieldset space-y-3 border border-gray-300 rounded p-3">
+                                    <legend className="fieldset-legend">
+                                          Recaptcha
+                                    </legend>
                                     <LoadCanvasTemplate />
                                     <fieldset className="join">
                                           <input
