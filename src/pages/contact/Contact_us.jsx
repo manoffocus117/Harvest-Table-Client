@@ -4,6 +4,7 @@ import Hero from "../../components/Hero";
 
 import Contact_bg from "../../assets/contact/banner.jpg";
 import Location from "./sections/Location";
+import Contact_form from "./sections/Contact_form";
 
 const Contact_us = () => {
       return (
@@ -17,6 +18,7 @@ const Contact_us = () => {
                         subtitle={"Would you like to try a dish?"}
                   />
                   <Location />
+                  <Contact_form />
             </>
       );
 };
