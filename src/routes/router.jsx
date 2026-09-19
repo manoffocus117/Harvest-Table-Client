@@ -4,7 +4,7 @@ import Root_layout from "../layout/Root_layout";
 import Home from "../pages/home/Home";
 import Our_menu from "../pages/menu/Our_menu";
 import Order from "../pages/order/Order";
-import Contact_us from "../pages/Contact_us";
+import Contact_us from "../pages/contact/Contact_us";
 import Dashboard from "../pages/Dashboard";
 import Error from "../pages/Not_found";
 import Login from "../pages/Login";
