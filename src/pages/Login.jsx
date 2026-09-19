@@ -28,7 +28,7 @@ const Login = () => {
       };
 
       // verify captcha
-      const handle_verify_captcha = (event) => {
+      const handle_verify_captcha = () => {
             const captcha_value = captcha_ref.current.value;
             if (validateCaptcha(captcha_value)) {
                   set_disabled(false);
