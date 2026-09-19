@@ -7,7 +7,7 @@ const Chef_recommends = () => {
       const [recommends, set_recommends] = useState([]);
       // loading recommends data
       useEffect(() => {
-            fetch("menu.json")
+            fetch("http://localhost:3000/menu")
                   .then((res) => res.json())
                   .then((data) => {
                         const recommended_item = data.filter(
