@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Auth_context from "./../context/Auth_context";
 import {
-      createUserWithEmailAndPassword,
       onAuthStateChanged,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
 } from "firebase/auth";
 import auth from "./../config/firebase.config";
 
@@ -18,6 +20,18 @@ const Auth_provider = ({ children }) => {
             return createUserWithEmailAndPassword(auth, email, password);
       };
 
+      // sign in user with email & password
+      const sign_in = (email, password) => {
+            set_loading(true);
+            return signInWithEmailAndPassword(email, password);
+      };
+
+      // sign out user
+      const sign_out = () => {
+            set_loading(true);
+            return signOut(auth);
+      };
+
       // auth observer
       useEffect(() => {
             const unmount = onAuthStateChanged(auth, (current_user) => {
@@ -30,7 +44,7 @@ const Auth_provider = ({ children }) => {
       }, []);
 
       // auth info
-      const auth_info = { user, loading, create_user };
+      const auth_info = { user, loading, create_user, sign_in, sign_out };
 
       return <Auth_context value={auth_info}>{children}</Auth_context>;
 };
