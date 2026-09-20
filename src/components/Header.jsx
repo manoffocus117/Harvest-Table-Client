@@ -1,6 +1,7 @@
 import {
       RiMenu5Line,
       RiShoppingCart2Line,
+      RiUser2Fill,
       RiUser3Line,
 } from "@remixicon/react";
 import React, { useContext, useEffect, useState } from "react";
@@ -40,9 +41,14 @@ const Header = () => {
                   <NavLink to={"/our-menu"}>Our Menu</NavLink>
                   <NavLink to={"/order/dessert"}>Order Food</NavLink>
                   <NavLink to={"/contact-us"}>Contact Us</NavLink>
-                  <NavLink to={"/dashboard"}>Dashboard</NavLink>
-                  <NavLink to={"/login"}>Login</NavLink>
-                  <NavLink to={"/register"}>Register</NavLink>
+                  {user ? (
+                        <NavLink to={"/dashboard"}>Dashboard</NavLink>
+                  ) : (
+                        <>
+                              <NavLink to={"/login"}>Login</NavLink>
+                              <NavLink to={"/register"}>Register</NavLink>
+                        </>
+                  )}
             </>
       );
       return (
@@ -100,40 +106,44 @@ const Header = () => {
                                           </div>
                                     </div>
                                     {/* user profile */}
-                                    <div className="dropdown dropdown-end">
-                                          <div
-                                                tabIndex={0}
-                                                role="button"
-                                                className="btn btn-ghost btn-circle bg-base-300"
-                                          >
-                                                <RiUser3Line />
+                                    {user && (
+                                          <div className="dropdown dropdown-end">
+                                                <div
+                                                      tabIndex={0}
+                                                      role="button"
+                                                      className="btn btn-ghost btn-circle bg-base-300"
+                                                >
+                                                      <RiUser3Line />
+                                                </div>
+                                                <menu
+                                                      tabIndex={-1}
+                                                      className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                                                >
+                                                      <li>
+                                                            <NavLink
+                                                                  to={
+                                                                        "/profile"
+                                                                  }
+                                                                  className="justify-between"
+                                                            >
+                                                                  Profile
+                                                            </NavLink>
+                                                      </li>
+                                                      <li>
+                                                            <a>Settings</a>
+                                                      </li>
+                                                      <li>
+                                                            <button
+                                                                  onClick={
+                                                                        handle_sign_out
+                                                                  }
+                                                            >
+                                                                  Logout
+                                                            </button>
+                                                      </li>
+                                                </menu>
                                           </div>
-                                          <menu
-                                                tabIndex={-1}
-                                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-                                          >
-                                                <li>
-                                                      <NavLink
-                                                            to={"/profile"}
-                                                            className="justify-between"
-                                                      >
-                                                            Profile
-                                                      </NavLink>
-                                                </li>
-                                                <li>
-                                                      <a>Settings</a>
-                                                </li>
-                                                <li>
-                                                      <button
-                                                            onClick={
-                                                                  handle_sign_out
-                                                            }
-                                                      >
-                                                            Logout
-                                                      </button>
-                                                </li>
-                                          </menu>
-                                    </div>
+                                    )}
                               </div>
                               {/* mobile nav menu */}
                               <div className="dropdown dropdown-end lg:hidden">

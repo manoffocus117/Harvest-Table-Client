@@ -10,6 +10,7 @@ import Error from "../pages/Not_found";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Profile from "../pages/Profile";
+import Private_route from "./Private_route";
 
 const router = createBrowserRouter([
       {
@@ -34,7 +35,11 @@ const router = createBrowserRouter([
                   },
                   {
                         path: "dashboard",
-                        Component: Dashboard,
+                        element: (
+                              <Private_route>
+                                    <Dashboard />
+                              </Private_route>
+                        ),
                   },
                   {
                         path: "login",
@@ -46,7 +51,11 @@ const router = createBrowserRouter([
                   },
                   {
                         path: "profile",
-                        Component: Profile,
+                        element: (
+                              <Private_route>
+                                    <Profile />
+                              </Private_route>
+                        ),
                   },
             ],
       },
