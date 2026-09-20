@@ -13,11 +13,14 @@ import "./style.css";
 
 import router from "./routes/router";
 import { HelmetProvider } from "react-helmet-async";
+import Auth_provider from "./providers/Auth_provider";
 
 const root = document.getElementById("root");
 
 ReactDOM.createRoot(root).render(
       <HelmetProvider>
-            <RouterProvider router={router} />
+            <Auth_provider>
+                  <RouterProvider router={router} />
+            </Auth_provider>
       </HelmetProvider>,
 );
