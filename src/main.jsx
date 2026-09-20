@@ -18,9 +18,9 @@ import Auth_provider from "./providers/Auth_provider";
 const root = document.getElementById("root");
 
 ReactDOM.createRoot(root).render(
-      <HelmetProvider>
-            <Auth_provider>
+      <Auth_provider>
+            <HelmetProvider>
                   <RouterProvider router={router} />
-            </Auth_provider>
-      </HelmetProvider>,
+            </HelmetProvider>
+      </Auth_provider>,
 );
