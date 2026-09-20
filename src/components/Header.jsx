@@ -9,6 +9,7 @@ import { Link, NavLink } from "react-router";
 
 import Logo from "../assets/logo.png";
 import Auth_context from "../context/Auth_context";
+import Swal from "sweetalert2";
 
 const Header = () => {
       // auth context
@@ -29,9 +30,22 @@ const Header = () => {
       // handler for sign out
       const handle_sign_out = () => {
             sign_out()
-                  .then(() => {})
+                  .then(() => {
+                        Swal.fire({
+                              title: "Success!",
+                              text: "Logout success",
+                              icon: "success",
+                              confirmButtonColor: "rgb(251, 170, 0)",
+                        });
+                        navigate("/");
+                  })
                   .catch((error) => {
-                        console.log(error);
+                        Swal.fire({
+                              title: "Error",
+                              text: "Something went wrong",
+                              icon: "error",
+                              confirmButtonColor: "rgb(251, 170, 0)",
+                        });
                   });
       };
 

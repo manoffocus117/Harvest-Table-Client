@@ -10,6 +10,7 @@ import {
       validateCaptcha,
 } from "react-simple-captcha";
 import Auth_context from "../context/Auth_context";
+import Swal from "sweetalert2";
 
 const Login = () => {
       // state for submit button disabled
@@ -39,10 +40,25 @@ const Login = () => {
             const captcha = captcha_ref.current.value;
 
             // sign in user
-            sign_in(email, password).then((result) => {
-                  const user = result.user;
-                  navigate("/");
-            });
+            sign_in(email, password)
+                  .then((result) => {
+                        const user = result.user;
+                        Swal.fire({
+                              title: "Success!",
+                              text: "Login success",
+                              icon: "success",
+                              confirmButtonColor: "rgb(251, 170, 0)",
+                        });
+                        navigate("/");
+                  })
+                  .catch((error) => {
+                        Swal.fire({
+                              title: "Error",
+                              text: "Something went wrong",
+                              icon: "error",
+                              confirmButtonColor: "rgb(251, 170, 0)",
+                        });
+                  });
 
             event.target.reset();
       };
