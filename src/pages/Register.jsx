@@ -1,14 +1,15 @@
-import React, { use, useEffect, useRef, useState } from "react";
+import React, { use, useContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Register_bg from "../assets/reservation/wood-grain-pattern-gray1x.png";
 import Register_side_image from "../assets/others/authentication2.png";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Sign_in_with from "../components/Sign_in_with";
 import {
       loadCaptchaEnginge,
       LoadCanvasTemplate,
       validateCaptcha,
 } from "react-simple-captcha";
+import Auth_context from "../context/Auth_context";
 
 const Register = () => {
       // state for submit button disabled
@@ -16,6 +17,12 @@ const Register = () => {
 
       // ref for captcha
       const captcha_ref = useRef(null);
+
+      // auth context
+      const { create_user } = useContext(Auth_context);
+
+      // navigate
+      const navigate = useNavigate();
 
       // recaptcha
       useEffect(() => {
@@ -31,6 +38,12 @@ const Register = () => {
             const email = form.email.value;
             const password = form.password.value;
             const captcha = captcha_ref.current.value;
+
+            // sign up user
+            create_user(email, password).then((result) => {
+                  const user = result.user;
+                  navigate("/");
+            });
 
             event.target.reset();
       };
@@ -64,6 +77,7 @@ const Register = () => {
                               onSubmit={handle_register_submit}
                               className="fieldset gap-5"
                         >
+                              {/* name field */}
                               <fieldset className="fieldset">
                                     <label htmlFor="name">Name</label>
                                     <input
@@ -74,6 +88,7 @@ const Register = () => {
                                           placeholder="Enter your Name"
                                     />
                               </fieldset>
+                              {/* email field */}
                               <fieldset className="fieldset">
                                     <label htmlFor="email">Email</label>
                                     <input
@@ -84,6 +99,7 @@ const Register = () => {
                                           placeholder=" Enter your Email"
                                     />
                               </fieldset>
+                              {/* password field */}
                               <fieldset className="fieldset">
                                     <label htmlFor="password">Password</label>
                                     <input
@@ -94,6 +110,7 @@ const Register = () => {
                                           placeholder="Enter your Password"
                                     />
                               </fieldset>
+                              {/* recaptcha field */}
                               <fieldset className="fieldset space-y-3 border border-gray-300 rounded p-3">
                                     <legend className="fieldset-legend">
                                           Recaptcha
@@ -116,6 +133,7 @@ const Register = () => {
                                           />
                                     </fieldset>
                               </fieldset>
+                              {/* submit button */}
                               <button
                                     type="submit"
                                     disabled={disabled}
@@ -124,6 +142,7 @@ const Register = () => {
                                     Sign Up
                               </button>
                         </form>
+                        {/* navigate to sign in page */}
                         <p className="mt-5 text-primary">
                               Already have an account?{" "}
                               <Link to={"/login"} className="underline">

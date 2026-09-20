@@ -3,12 +3,16 @@ import {
       RiShoppingCart2Line,
       RiUser3Line,
 } from "@remixicon/react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 
 import Logo from "../assets/logo.png";
+import Auth_context from "../context/Auth_context";
 
 const Header = () => {
+      // auth context
+      const { user, sign_out } = useContext(Auth_context);
+
       // state for scroll effect
       const [is_scrolled, set_is_scrolled] = useState(false);
 
@@ -20,6 +24,15 @@ const Header = () => {
             window.addEventListener("scroll", handle_scroll);
             return () => window.removeEventListener("scroll", handle_scroll);
       }, []);
+
+      // handler for sign out
+      const handle_sign_out = () => {
+            sign_out()
+                  .then(() => {})
+                  .catch((error) => {
+                        console.log(error);
+                  });
+      };
 
       const navlink = (
             <>
@@ -111,7 +124,13 @@ const Header = () => {
                                                       <a>Settings</a>
                                                 </li>
                                                 <li>
-                                                      <a>Logout</a>
+                                                      <button
+                                                            onClick={
+                                                                  handle_sign_out
+                                                            }
+                                                      >
+                                                            Logout
+                                                      </button>
                                                 </li>
                                           </menu>
                                     </div>
