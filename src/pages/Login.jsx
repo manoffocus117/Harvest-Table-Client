@@ -25,6 +25,13 @@ const Login = () => {
       // login form handler
       const handle_login_submit = (event) => {
             event.preventDefault();
+
+            const form = event.target;
+            const email = form.email.value;
+            const password = form.password.value;
+            const captcha = captcha_ref.current.value;
+
+            event.target.reset();
       };
 
       // verify captcha
@@ -63,6 +70,7 @@ const Login = () => {
                               <fieldset className="fieldset">
                                     <label htmlFor="email">Email</label>
                                     <input
+                                          name="email"
                                           type="email"
                                           id="email"
                                           className="input outline-none w-full"
@@ -72,6 +80,7 @@ const Login = () => {
                               <fieldset className="fieldset">
                                     <label htmlFor="password">Password</label>
                                     <input
+                                          name="password"
                                           type="password"
                                           id="password"
                                           className="input outline-none w-full"
@@ -91,12 +100,13 @@ const Login = () => {
                                                 className="join-item input outline-none w-full"
                                                 placeholder="Enter the Captcha above"
                                           />
-                                          <button
+                                          {/* verify captcha button */}
+                                          <input
+                                                type="button"
+                                                value={"Verify"}
                                                 onClick={handle_verify_captcha}
                                                 className="join-item btn btn-primary text-white shadow-none hover:bg-transparent hover:text-black hover:border-primary"
-                                          >
-                                                Verify
-                                          </button>
+                                          />
                                     </fieldset>
                               </fieldset>
                               <button
