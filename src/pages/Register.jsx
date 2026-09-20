@@ -25,6 +25,14 @@ const Register = () => {
       // handler for register form submit
       const handle_register_submit = (event) => {
             event.preventDefault();
+
+            const form = event.target;
+            const name = form.name.value;
+            const email = form.email.value;
+            const password = form.password.value;
+            const captcha = captcha_ref.current.value;
+
+            event.target.reset();
       };
 
       // verify captcha
@@ -34,6 +42,7 @@ const Register = () => {
                   set_disabled(false);
             } else {
                   set_disabled(true);
+                  alert("captcha is not correct");
             }
       };
 
@@ -58,6 +67,7 @@ const Register = () => {
                               <fieldset className="fieldset">
                                     <label htmlFor="name">Name</label>
                                     <input
+                                          name="name"
                                           type="text"
                                           id="name"
                                           className="input outline-none w-full"
@@ -67,6 +77,7 @@ const Register = () => {
                               <fieldset className="fieldset">
                                     <label htmlFor="email">Email</label>
                                     <input
+                                          name="email"
                                           type="email"
                                           id="email"
                                           className="input outline-none w-full"
@@ -76,6 +87,7 @@ const Register = () => {
                               <fieldset className="fieldset">
                                     <label htmlFor="password">Password</label>
                                     <input
+                                          name="password"
                                           type="password"
                                           id="password"
                                           className="input outline-none w-full"
@@ -95,12 +107,13 @@ const Register = () => {
                                                 className="join-item input outline-none w-full"
                                                 placeholder="Enter the Captcha above"
                                           />
-                                          <button
+                                          {/* verify captcha button */}
+                                          <input
+                                                type="button"
+                                                value={"Verify"}
                                                 onClick={handle_verify_captcha}
                                                 className="join-item btn btn-primary text-white shadow-none hover:bg-transparent hover:text-black hover:border-primary"
-                                          >
-                                                Verify
-                                          </button>
+                                          />
                                     </fieldset>
                               </fieldset>
                               <button
