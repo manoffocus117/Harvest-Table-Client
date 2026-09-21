@@ -54,7 +54,7 @@ const Login = () => {
                   .catch((error) => {
                         Swal.fire({
                               title: "Error",
-                              text: "Something went wrong",
+                              text: `Something went wrong : ${error}`,
                               icon: "error",
                               confirmButtonColor: "rgb(251, 170, 0)",
                         });

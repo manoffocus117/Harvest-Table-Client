@@ -5,7 +5,7 @@ import {
       RiUser3Line,
 } from "@remixicon/react";
 import React, { useContext, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, Navigate, NavLink } from "react-router";
 
 import Logo from "../assets/logo.png";
 import Auth_context from "../context/Auth_context";
@@ -37,12 +37,12 @@ const Header = () => {
                               icon: "success",
                               confirmButtonColor: "rgb(251, 170, 0)",
                         });
-                        navigate("/");
+                        Navigate("/");
                   })
                   .catch((error) => {
                         Swal.fire({
-                              title: "Error",
-                              text: "Something went wrong",
+                              title: "Error!",
+                              text: `Something went wrong : ${error}`,
                               icon: "error",
                               confirmButtonColor: "rgb(251, 170, 0)",
                         });
@@ -83,7 +83,9 @@ const Header = () => {
                                     <h3>Harvest Table</h3>
                               </Link>
                         </div>
-                        <div className="navbar-center hidden lg:flex">
+                        <div
+                              className={`${user ? "navbar-center" : "navbar-end"} hidden lg:flex`}
+                        >
                               <menu className="menu menu-horizontal items-center gap-10">
                                     {navlink}
                               </menu>
