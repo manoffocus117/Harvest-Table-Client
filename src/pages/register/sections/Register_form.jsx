@@ -123,10 +123,13 @@ const Register_form = () => {
                                     placeholder="Enter your Password"
                                     required
                                     minLength="8"
+                                    maxLength="32"
                                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                               />
                               <p className="validator-hint hidden">
-                                    Must be more than 8 characters, including
+                                    Must be more than 8 characters &
+                                    <br />
+                                    less than 32 characters, including
                                     <br />
                                     At least one number
                                     <br />
