@@ -86,9 +86,16 @@ const Register_form = () => {
                                     name="name"
                                     type="text"
                                     id="name"
-                                    className="input outline-none w-full"
+                                    className="input outline-none w-full validator"
                                     placeholder="Enter your Name"
+                                    pattern="[A-Za-z][A-Za-z0-9\-]*"
+                                    minLength="3"
+                                    maxLength="30"
+                                    required
                               />
+                              <span className="validator-hint hidden">
+                                    Must be 3 to 30 characters
+                              </span>
                         </fieldset>
                         {/* email field */}
                         <fieldset className="fieldset">
@@ -97,9 +104,13 @@ const Register_form = () => {
                                     name="email"
                                     type="email"
                                     id="email"
-                                    className="input outline-none w-full"
+                                    className="input outline-none w-full validator"
                                     placeholder=" Enter your Email"
+                                    required
                               />
+                              <span className="validator-hint hidden">
+                                    Enter valid email address
+                              </span>
                         </fieldset>
                         {/* password field */}
                         <fieldset className="fieldset">
@@ -108,9 +119,21 @@ const Register_form = () => {
                                     name="password"
                                     type="password"
                                     id="password"
-                                    className="input outline-none w-full"
+                                    className="input outline-none w-full validator"
                                     placeholder="Enter your Password"
+                                    required
+                                    minLength="8"
+                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                               />
+                              <p className="validator-hint hidden">
+                                    Must be more than 8 characters, including
+                                    <br />
+                                    At least one number
+                                    <br />
+                                    At least one lowercase letter
+                                    <br />
+                                    At least one uppercase letter
+                              </p>
                         </fieldset>
                         {/* recaptcha field */}
                         <fieldset className="fieldset space-y-3 border border-gray-300 rounded p-3">
