@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Sign_in_with from "../../../components/Sign_in_with";
 import {
       loadCaptchaEnginge,
@@ -21,6 +21,8 @@ const Login_form = () => {
 
       // navigate
       const navigate = useNavigate();
+      const location = useLocation();
+      const from = location.state?.from?.pathname || "/";
 
       // recaptcha
       useEffect(() => {
@@ -46,7 +48,7 @@ const Login_form = () => {
                               icon: "success",
                               confirmButtonColor: "rgb(251, 170, 0)",
                         });
-                        navigate("/");
+                        navigate(from, { replace: true });
                   })
                   .catch((error) => {
                         Swal.fire({
