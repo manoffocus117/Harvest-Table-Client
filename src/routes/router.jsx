@@ -7,8 +7,8 @@ import Order from "../pages/order/Order";
 import Contact_us from "../pages/contact/Contact_us";
 import Dashboard from "../pages/Dashboard";
 import Error from "../pages/Not_found";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
+import Login from "../pages/login/Login";
+import Register from "../pages/register/Register";
 import Profile from "../pages/Profile";
 import Private_route from "./Private_route";
 

@@ -1,7 +1,6 @@
 import {
       RiMenu5Line,
       RiShoppingCart2Line,
-      RiUser2Fill,
       RiUser3Line,
 } from "@remixicon/react";
 import React, { useContext, useEffect, useState } from "react";
@@ -70,6 +69,7 @@ const Header = () => {
                   className={`${is_scrolled ? "navbar-blur" : ""}  w-full py-2 fixed top-0 z-10`}
             >
                   <div className="navbar w-11/12 mx-auto p-0">
+                        {/* navbar start */}
                         <div className="navbar-start">
                               <Link
                                     to={"/"}
@@ -83,6 +83,7 @@ const Header = () => {
                                     <h3>Harvest Table</h3>
                               </Link>
                         </div>
+                        {/* navbar center */}
                         <div
                               className={`${user ? "navbar-center" : "navbar-end"} hidden lg:flex`}
                         >
@@ -90,6 +91,7 @@ const Header = () => {
                                     {navlink}
                               </menu>
                         </div>
+                        {/* navbar end */}
                         {user && (
                               <div className="navbar-end gap-3 lg:gap-0">
                                     {/* user profile & shopping cart */}

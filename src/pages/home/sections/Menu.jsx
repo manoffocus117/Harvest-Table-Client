@@ -1,7 +1,7 @@
 import React from "react";
 import Title from "./../../../components/Title";
 import Menu_item from "../../../components/Menu_item";
-import Button from "../../../components/Button";
+import { Link } from "react-router";
 import useMenu from "../../../hooks/useMenu";
 
 const Menu = () => {
@@ -15,7 +15,12 @@ const Menu = () => {
                               <Menu_item key={item._id} item={item} />
                         ))}
                   </div>
-                  <Button name={"View Full Menu"} />
+                  <Link
+                        to={"/our-menu"}
+                        className="btn bg-transparent shadow-none border-0 border-b-2 border-black px-4 py-2 rounded-md capitalize hover:bg-primary hover:text-white hover:border-none"
+                  >
+                        View full menu
+                  </Link>
             </section>
       );
 };
