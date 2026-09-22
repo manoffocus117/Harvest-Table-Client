@@ -17,7 +17,7 @@ const Register_form = () => {
       const captcha_ref = useRef(null);
 
       // auth context
-      const { create_user } = useContext(Auth_context);
+      const { create_user, update_user_profile } = useContext(Auth_context);
 
       // navigate
       const navigate = useNavigate();
@@ -33,6 +33,7 @@ const Register_form = () => {
 
             const form = event.target;
             const name = form.name.value;
+            const photo_url = form.photo_url.value;
             const email = form.email.value;
             const password = form.password.value;
             const captcha = captcha_ref.current.value;
@@ -41,24 +42,36 @@ const Register_form = () => {
             create_user(email, password)
                   .then((result) => {
                         const user = result.user;
-                        Swal.fire({
-                              title: "Success!",
-                              text: "Registration success",
-                              icon: "success",
-                              confirmButtonColor: "rgb(251, 170, 0)",
-                        });
-                        navigate("/");
+                        update_user_profile(name, photo_url)
+                              .then(() => {
+                                    Swal.fire({
+                                          title: "Success!",
+                                          text: "Registration success",
+                                          icon: "success",
+                                          confirmButtonColor:
+                                                "rgb(251, 170, 0)",
+                                    });
+                                    event.target.reset();
+                                    navigate("/");
+                              })
+                              .catch((error) => {
+                                    Swal.fire({
+                                          title: "Error!",
+                                          text: `Something went wrong : ${error}`,
+                                          icon: "error",
+                                          confirmButtonColor:
+                                                "rgb(251, 170, 0)",
+                                    });
+                              });
                   })
                   .catch((error) => {
                         Swal.fire({
                               title: "Error",
-                              text: "Something went wrong",
+                              text: `Something went wrong: ${error}`,
                               icon: "error",
                               confirmButtonColor: "rgb(251, 170, 0)",
                         });
                   });
-
-            event.target.reset();
       };
 
       // verify captcha
@@ -88,13 +101,31 @@ const Register_form = () => {
                                     id="name"
                                     className="input outline-none w-full validator"
                                     placeholder="Enter your Name"
-                                    pattern="[A-Za-z][A-Za-z0-9\-]*"
+                                    pattern="[A-Za-z_ ]*"
                                     minLength="3"
                                     maxLength="30"
                                     required
                               />
+                              <p className="validator-hint hidden">
+                                    Must be 3 to 30 characters, including
+                                    <br />
+                                    Capital and small letters
+                              </p>
+                        </fieldset>
+                        {/* photo url field */}
+                        <fieldset className="fieldset">
+                              <label htmlFor="photo-url">Photo URL</label>
+                              <input
+                                    name="photo_url"
+                                    type="url"
+                                    id="photo-url"
+                                    className="input outline-none w-full validator"
+                                    placeholder="https://"
+                                    defaultValue="https://"
+                                    required
+                              />
                               <span className="validator-hint hidden">
-                                    Must be 3 to 30 characters
+                                    Must be be a valid URL
                               </span>
                         </fieldset>
                         {/* email field */}
@@ -124,18 +155,20 @@ const Register_form = () => {
                                     required
                                     minLength="8"
                                     maxLength="32"
-                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
                               />
                               <p className="validator-hint hidden">
                                     Must be more than 8 characters &
                                     <br />
                                     less than 32 characters, including
                                     <br />
-                                    At least one number
+                                    At least one uppercase letter
                                     <br />
                                     At least one lowercase letter
                                     <br />
-                                    At least one uppercase letter
+                                    At least one number
+                                    <br />
+                                    At least one special character
                               </p>
                         </fieldset>
                         {/* recaptcha field */}

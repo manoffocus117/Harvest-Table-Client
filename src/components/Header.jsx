@@ -135,12 +135,37 @@ const Header = () => {
                                                       role="button"
                                                       className="btn btn-ghost btn-circle bg-base-300"
                                                 >
-                                                      <RiUser3Line />
+                                                      {user?.photoURL ? (
+                                                            <figure className="w-10 h-10 rounded-full">
+                                                                  <img
+                                                                        src={
+                                                                              user.photoURL
+                                                                        }
+                                                                        alt={
+                                                                              user.displayName
+                                                                        }
+                                                                        className="w-full h-full rounded-full object-cover"
+                                                                  />
+                                                            </figure>
+                                                      ) : (
+                                                            <RiUser3Line />
+                                                      )}
                                                 </div>
                                                 <menu
                                                       tabIndex={-1}
                                                       className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
                                                 >
+                                                      {user?.displayName ? (
+                                                            <span className="px-2.5 mb-2 text-xl">
+                                                                  {
+                                                                        user.displayName
+                                                                  }
+                                                            </span>
+                                                      ) : (
+                                                            <span className="px-2.5 mb-2 text-xl">
+                                                                  No name
+                                                            </span>
+                                                      )}
                                                       <li>
                                                             <NavLink
                                                                   to={
@@ -150,9 +175,6 @@ const Header = () => {
                                                             >
                                                                   Profile
                                                             </NavLink>
-                                                      </li>
-                                                      <li>
-                                                            <a>Settings</a>
                                                       </li>
                                                       <li>
                                                             <button

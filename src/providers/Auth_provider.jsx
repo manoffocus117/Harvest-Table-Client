@@ -5,6 +5,7 @@ import {
       createUserWithEmailAndPassword,
       signInWithEmailAndPassword,
       signOut,
+      updateProfile,
 } from "firebase/auth";
 import auth from "./../config/firebase.config";
 
@@ -32,6 +33,14 @@ const Auth_provider = ({ children }) => {
             return signOut(auth);
       };
 
+      // update user profile
+      const update_user_profile = (name, photo_url) => {
+            return updateProfile(auth.currentUser, {
+                  displayName: name,
+                  photoURL: photo_url,
+            });
+      };
+
       // auth observer
       useEffect(() => {
             const unmount = onAuthStateChanged(auth, (current_user) => {
@@ -44,7 +53,14 @@ const Auth_provider = ({ children }) => {
       }, []);
 
       // auth info
-      const auth_info = { user, loading, create_user, sign_in, sign_out };
+      const auth_info = {
+            user,
+            loading,
+            create_user,
+            sign_in,
+            sign_out,
+            update_user_profile,
+      };
 
       return <Auth_context value={auth_info}>{children}</Auth_context>;
 };
