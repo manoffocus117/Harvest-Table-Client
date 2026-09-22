@@ -4,7 +4,7 @@ import {
       RiUser3Line,
 } from "@remixicon/react";
 import React, { useContext, useEffect, useState } from "react";
-import { Link, Navigate, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 
 import Logo from "../assets/logo.png";
 import Auth_context from "../context/Auth_context";
@@ -16,6 +16,9 @@ const Header = () => {
 
       // state for scroll effect
       const [is_scrolled, set_is_scrolled] = useState(false);
+
+      // navigation
+      const navigate = useNavigate();
 
       // handle scroll effect
       useEffect(() => {
@@ -36,7 +39,7 @@ const Header = () => {
                               icon: "success",
                               confirmButtonColor: "rgb(251, 170, 0)",
                         });
-                        Navigate("/");
+                        navigate("/");
                   })
                   .catch((error) => {
                         Swal.fire({
