@@ -77,7 +77,7 @@ const Category = () => {
                         {slides.map((slide) => (
                               <SwiperSlide
                                     key={slide.id}
-                                    className="category-swiper-slide h-full hover:image-full"
+                                    className="h-115! hover:image-full"
                               >
                                     <figure className="relative">
                                           <img
@@ -86,7 +86,7 @@ const Category = () => {
                                                 className="rounded-xl w-full h-full object-cover"
                                           />
                                     </figure>
-                                    <h3 className="absolute top-[80%] left-[32%] text-2xl text-center text-white bg-primary px-8 py-2 rounded">
+                                    <h3 className="absolute bottom-[10%] left-[32%] text-2xl text-center text-white bg-primary px-8 py-2 rounded">
                                           {slide.name}
                                     </h3>
                               </SwiperSlide>

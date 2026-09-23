@@ -56,15 +56,15 @@ const Hero = () => {
                         }}
                         loop
                         modules={[Pagination, EffectFade, Autoplay]}
-                        className="swiper"
+                        className="swiper md:h-150!"
                   >
                         {images.map((image) => (
-                              <SwiperSlide key={image.id}>
+                              <SwiperSlide key={image.id} className="h-full">
                                     <figure className="m-0 w-full h-full">
                                           <img
                                                 src={image.image_url}
                                                 alt={image.name}
-                                                className="rounded-xl w-full h-full object-cover"
+                                                className="rounded-xl w-full h-full object-bottom"
                                           />
                                     </figure>
                               </SwiperSlide>
