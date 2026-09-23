@@ -71,7 +71,7 @@ const Header = () => {
             <header
                   className={`${is_scrolled ? "navbar-blur" : ""}  w-full py-2 fixed top-0 z-10`}
             >
-                  <div className="navbar w-11/12 mx-auto p-0">
+                  <nav className="navbar mx-auto p-0">
                         {/* navbar start */}
                         <div className="navbar-start">
                               <Link
@@ -206,7 +206,7 @@ const Header = () => {
                                     </div>
                               </div>
                         )}
-                  </div>
+                  </nav>
             </header>
       );
 };

@@ -52,7 +52,12 @@ button {
 
 section {
       margin: 6.25rem auto;
-      width: calc(11 / 12 * 100%) /* 91.666667% */;
+      max-width: 80rem;
+}
+
+nav {
+      max-width: 80rem;
+      /* margin: 0 1rem; */
 }
 
 .navbar-blur {
@@ -110,6 +115,12 @@ a.active {
 }
 
 @media (max-width: 400px) {
+      section {
+            margin: 6.25rem 1rem;
+      }
+      nav {
+            margin: 0 1rem;
+      }
       .swiper,
       .swiper-wrapper {
             height: 250px;
