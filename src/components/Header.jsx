@@ -69,11 +69,11 @@ const Header = () => {
       );
       return (
             <header
-                  className={`${is_scrolled ? "navbar-blur" : ""}  w-full py-2 fixed top-0 z-10`}
+                  className={`${is_scrolled ? "navbar-blur" : ""} w-full py-2 fixed top-0 z-10`}
             >
                   <nav className="navbar mx-auto p-0">
                         {/* navbar start */}
-                        <div className="navbar-start">
+                        <div className="navbar-start ml-4 md:ml-0">
                               <Link
                                     to={"/"}
                                     className="text-xl font-medium flex items-end gap-2"
@@ -96,7 +96,7 @@ const Header = () => {
                         </div>
                         {/* navbar end */}
                         {user && (
-                              <div className="navbar-end gap-3 lg:gap-0">
+                              <div className="navbar-end gap-3 lg:gap-0 mr-4 md:mr-0">
                                     {/* user profile & shopping cart */}
                                     <div className="flex gap-3">
                                           {/* shopping cart */}

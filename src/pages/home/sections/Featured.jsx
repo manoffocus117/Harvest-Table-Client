@@ -4,7 +4,7 @@ import Featured_image from "../../../assets/home/featured.jpg";
 const Featured = () => {
       return (
             <section
-                  className="hero min-h-screen rounded-xl"
+                  className="relative rounded-xl"
                   style={{
                         backgroundImage: `url("${Featured_image}")`,
                         backgroundAttachment: "fixed",
@@ -12,9 +12,9 @@ const Featured = () => {
                         backgroundPosition: "center",
                   }}
             >
-                  <div className="hero-overlay rounded-xl"></div>
-                  <div className="hero-content w-full md:w-8/12 flex-col text-neutral-content">
-                        <div className="my-12 w-full md:w-4/12 mx-auto">
+                  <div className="hero-overlay absolute rounded-xl"></div>
+                  <div className="hero-content w-full mx-auto py-20 md:w-8/12 flex-col text-neutral-content">
+                        <div className="mb-12 w-full md:w-6/12 mx-auto">
                               <h3 className="text-xl text-center text-primary">
                                     --- Check it out ---
                               </h3>
