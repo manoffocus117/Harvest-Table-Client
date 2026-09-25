@@ -3,7 +3,7 @@ import React from "react";
 const Hero = ({ bg_url, title, subtitle }) => {
       return (
             <section
-                  className="hero py-25 rounded-xl"
+                  className="flex items-center justify-center py-25 rounded-xl"
                   style={{
                         backgroundImage: `url("${bg_url}")`,
                         backgroundAttachment: "fixed",
