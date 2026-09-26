@@ -104,9 +104,14 @@ const Header = () => {
                                                 <div
                                                       tabIndex={0}
                                                       role="button"
-                                                      className="btn btn-ghost btn-circle bg-base-300"
+                                                      className="btn btn-ghost btn-circle border border-gray-200"
                                                 >
-                                                      <RiShoppingCart2Line />
+                                                      <div className="indicator">
+                                                            <RiShoppingCart2Line />
+                                                            <span className="badge badge-sm badge-primary text-white indicator-item">
+                                                                  0
+                                                            </span>
+                                                      </div>
                                                 </div>
                                                 <div
                                                       tabIndex={0}
@@ -114,10 +119,10 @@ const Header = () => {
                                                 >
                                                       <div className="card-body">
                                                             <span className="text-lg font-bold">
-                                                                  8 Items
+                                                                  0 Items
                                                             </span>
                                                             <span className="text-info">
-                                                                  Subtotal: $999
+                                                                  Subtotal: $0
                                                             </span>
                                                             <div className="card-actions">
                                                                   <button className="btn btn-primary btn-block">
