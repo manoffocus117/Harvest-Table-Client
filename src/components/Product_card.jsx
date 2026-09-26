@@ -3,12 +3,14 @@ import Auth_context from "./../context/Auth_context";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router";
 import axios from "axios";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const Product_card = ({ item }) => {
       const { user } = useContext(Auth_context);
       const { name, image, recipe, price, _id } = item;
       const navigate = useNavigate();
       const location = useLocation();
+      const axios_secure = useAxiosSecure();
 
       // handler for add to cart
       const handle_add_to_cart = (food_item) => {
@@ -22,22 +24,19 @@ const Product_card = ({ item }) => {
                         image,
                         price,
                   };
-                  axios.post("http://localhost:3000/cart", cart_item).then(
-                        (res) => {
-                              console.log(res.data);
+                  axios_secure.post("/cart", cart_item).then((res) => {
+                        console.log(res.data);
 
-                              if (res.data.insertedId) {
-                                    Swal.fire({
-                                          icon: "success",
-                                          title: "Success",
-                                          text: `${name} has been added to the cart`,
-                                          confirmButtonColor:
-                                                "rgb(251, 170, 0)",
-                                          timer: 3000,
-                                    });
-                              }
-                        },
-                  );
+                        if (res.data.insertedId) {
+                              Swal.fire({
+                                    icon: "success",
+                                    title: "Success",
+                                    text: `${name} has been added to the cart`,
+                                    confirmButtonColor: "rgb(251, 170, 0)",
+                                    timer: 3000,
+                              });
+                        }
+                  });
             } else {
                   Swal.fire({
                         title: "Not found",

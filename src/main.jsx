@@ -14,13 +14,18 @@ import "./style.css";
 import router from "./routes/router";
 import { HelmetProvider } from "react-helmet-async";
 import Auth_provider from "./providers/Auth_provider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const query_client = new QueryClient();
 
 const root = document.getElementById("root");
 
 ReactDOM.createRoot(root).render(
       <Auth_provider>
-            <HelmetProvider>
-                  <RouterProvider router={router} />
-            </HelmetProvider>
+            <QueryClientProvider client={query_client}>
+                  <HelmetProvider>
+                        <RouterProvider router={router} />
+                  </HelmetProvider>
+            </QueryClientProvider>
       </Auth_provider>,
 );

@@ -9,6 +9,7 @@ import {
 import Logo from "../assets/logo.png";
 import Auth_context from "../context/Auth_context";
 import Swal from "sweetalert2";
+import useCart from "../hooks/useCart";
 
 const Header = () => {
       // auth context
@@ -19,6 +20,9 @@ const Header = () => {
 
       // navigation
       const navigate = useNavigate();
+
+      // cart item
+      const [cart] = useCart();
 
       // handle scroll effect
       useEffect(() => {
@@ -109,7 +113,7 @@ const Header = () => {
                                                       <div className="indicator">
                                                             <RiShoppingCart2Line />
                                                             <span className="badge badge-sm badge-primary text-white indicator-item">
-                                                                  0
+                                                                  {cart.length}
                                                             </span>
                                                       </div>
                                                 </div>
@@ -119,7 +123,8 @@ const Header = () => {
                                                 >
                                                       <div className="card-body">
                                                             <span className="text-lg font-bold">
-                                                                  0 Items
+                                                                  {cart.length}{" "}
+                                                                  Items
                                                             </span>
                                                             <span className="text-info">
                                                                   Subtotal: $0
