@@ -98,123 +98,153 @@ const Header = () => {
                                     {navlink}
                               </menu>
                         </div>
-                        {/* navbar end */}
-                        {user && (
-                              <div className="navbar-end gap-3 lg:gap-0 mr-4 md:mr-0">
-                                    {/* user profile & shopping cart */}
-                                    <div className="flex gap-3">
-                                          {/* shopping cart */}
-                                          <div className="dropdown dropdown-end">
-                                                <div
-                                                      tabIndex={0}
-                                                      role="button"
-                                                      className="btn btn-ghost btn-circle border border-gray-200"
-                                                >
-                                                      <div className="indicator">
-                                                            <RiShoppingCart2Line />
-                                                            <span className="badge badge-sm badge-primary text-white indicator-item">
-                                                                  {cart.length}
-                                                            </span>
+                        {/* conditionally rendering navbar end */}
+                        {user ? (
+                              <>
+                                    {/* navbar end */}
+                                    <div className="navbar-end gap-3 lg:gap-0 mr-4 md:mr-0">
+                                          {/* user profile & shopping cart */}
+                                          <div className="flex gap-3">
+                                                {/* shopping cart */}
+                                                <div className="dropdown dropdown-end">
+                                                      <div
+                                                            tabIndex={0}
+                                                            role="button"
+                                                            className="btn btn-ghost btn-circle border border-gray-200"
+                                                      >
+                                                            <div className="indicator">
+                                                                  <RiShoppingCart2Line />
+                                                                  <span className="badge badge-sm badge-primary text-white indicator-item">
+                                                                        {
+                                                                              cart.length
+                                                                        }
+                                                                  </span>
+                                                            </div>
                                                       </div>
-                                                </div>
-                                                <div
-                                                      tabIndex={0}
-                                                      className="card card-sm dropdown-content bg-base-100 z-1 mt-3 w-52 shadow"
-                                                >
-                                                      <div className="card-body">
-                                                            <span className="text-lg font-bold">
-                                                                  {cart.length}{" "}
-                                                                  Items
-                                                            </span>
-                                                            <span className="text-info">
-                                                                  Subtotal: $0
-                                                            </span>
-                                                            <div className="card-actions">
-                                                                  <button className="btn btn-primary btn-block">
-                                                                        View
-                                                                        cart
-                                                                  </button>
+                                                      <div
+                                                            tabIndex={0}
+                                                            className="card card-sm dropdown-content bg-base-100 z-1 mt-3 w-52 shadow"
+                                                      >
+                                                            <div className="card-body">
+                                                                  <span className="text-lg font-bold">
+                                                                        {
+                                                                              cart.length
+                                                                        }{" "}
+                                                                        Items
+                                                                  </span>
+                                                                  <span className="text-info">
+                                                                        Subtotal:
+                                                                        $0
+                                                                  </span>
+                                                                  <div className="card-actions">
+                                                                        <button className="btn btn-primary btn-block">
+                                                                              View
+                                                                              cart
+                                                                        </button>
+                                                                  </div>
                                                             </div>
                                                       </div>
                                                 </div>
+                                                {/* user profile */}
+                                                <div className="dropdown dropdown-end">
+                                                      <div
+                                                            tabIndex={0}
+                                                            role="button"
+                                                            className="btn btn-ghost btn-circle bg-base-300"
+                                                      >
+                                                            {user?.photoURL ? (
+                                                                  <figure className="w-10 h-10 rounded-full">
+                                                                        <img
+                                                                              src={
+                                                                                    user.photoURL
+                                                                              }
+                                                                              alt={
+                                                                                    user.displayName
+                                                                              }
+                                                                              className="w-full h-full rounded-full object-cover"
+                                                                        />
+                                                                  </figure>
+                                                            ) : (
+                                                                  <RiUser3Line />
+                                                            )}
+                                                      </div>
+                                                      <menu
+                                                            tabIndex={-1}
+                                                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                                                      >
+                                                            {user?.displayName ? (
+                                                                  <span className="px-2.5 mb-2 text-xl">
+                                                                        {
+                                                                              user.displayName
+                                                                        }
+                                                                  </span>
+                                                            ) : (
+                                                                  <span className="px-2.5 mb-2 text-xl">
+                                                                        No name
+                                                                  </span>
+                                                            )}
+                                                            <li>
+                                                                  <NavLink
+                                                                        to={
+                                                                              "/profile"
+                                                                        }
+                                                                        className="justify-between"
+                                                                  >
+                                                                        Profile
+                                                                  </NavLink>
+                                                            </li>
+                                                            <li>
+                                                                  <button
+                                                                        onClick={
+                                                                              handle_sign_out
+                                                                        }
+                                                                  >
+                                                                        Logout
+                                                                  </button>
+                                                            </li>
+                                                      </menu>
+                                                </div>
                                           </div>
-                                          {/* user profile */}
-                                          <div className="dropdown dropdown-end">
+
+                                          {/* mobile nav menu */}
+                                          <div className="dropdown dropdown-end lg:hidden">
                                                 <div
                                                       tabIndex={0}
                                                       role="button"
                                                       className="btn btn-ghost btn-circle bg-base-300"
                                                 >
-                                                      {user?.photoURL ? (
-                                                            <figure className="w-10 h-10 rounded-full">
-                                                                  <img
-                                                                        src={
-                                                                              user.photoURL
-                                                                        }
-                                                                        alt={
-                                                                              user.displayName
-                                                                        }
-                                                                        className="w-full h-full rounded-full object-cover"
-                                                                  />
-                                                            </figure>
-                                                      ) : (
-                                                            <RiUser3Line />
-                                                      )}
+                                                      <RiMenu5Line className="rounded-full" />
                                                 </div>
                                                 <menu
                                                       tabIndex={-1}
-                                                      className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                                                      className="menu menu-sm gap-3 dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
                                                 >
-                                                      {user?.displayName ? (
-                                                            <span className="px-2.5 mb-2 text-xl">
-                                                                  {
-                                                                        user.displayName
-                                                                  }
-                                                            </span>
-                                                      ) : (
-                                                            <span className="px-2.5 mb-2 text-xl">
-                                                                  No name
-                                                            </span>
-                                                      )}
-                                                      <li>
-                                                            <NavLink
-                                                                  to={
-                                                                        "/profile"
-                                                                  }
-                                                                  className="justify-between"
-                                                            >
-                                                                  Profile
-                                                            </NavLink>
-                                                      </li>
-                                                      <li>
-                                                            <button
-                                                                  onClick={
-                                                                        handle_sign_out
-                                                                  }
-                                                            >
-                                                                  Logout
-                                                            </button>
-                                                      </li>
+                                                      {navlink}
                                                 </menu>
                                           </div>
                                     </div>
+                              </>
+                        ) : (
+                              <>
                                     {/* mobile nav menu */}
-                                    <div className="dropdown dropdown-end lg:hidden">
-                                          <div
-                                                tabIndex={0}
-                                                role="button"
-                                                className="btn btn-ghost btn-circle bg-base-300"
-                                          >
-                                                <RiMenu5Line className="rounded-full" />
+                                    <div className="navbar-end lg:hidden mr-4">
+                                          <div className="dropdown dropdown-end lg:hidden">
+                                                <div
+                                                      tabIndex={0}
+                                                      role="button"
+                                                      className="btn btn-ghost btn-circle bg-base-300"
+                                                >
+                                                      <RiMenu5Line className="rounded-full" />
+                                                </div>
+                                                <menu
+                                                      tabIndex={-1}
+                                                      className="menu menu-sm gap-3 dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                                                >
+                                                      {navlink}
+                                                </menu>
                                           </div>
-                                          <menu
-                                                tabIndex={-1}
-                                                className="menu menu-sm gap-3 dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-                                          >
-                                                {navlink}
-                                          </menu>
                                     </div>
-                              </div>
+                              </>
                         )}
                   </nav>
             </header>
