@@ -73,13 +73,13 @@ const Dashboard_layout = () => {
                   </Helmet>
                   <section className="grid grid-cols-8">
                         {/* dashboard sidebar */}
-                        <div className="col-span-2 h-full bg-primary p-10 rounded-l-2xl">
+                        <div className="col-span-2 h-full p-10 border border-gray-300 rounded-l-2xl">
                               <menu className="flex flex-col gap-5">
                                     {dashboard_links}
                               </menu>
                         </div>
                         {/* dashboard main content */}
-                        <div className="col-span-6 bg-base-300 p-10 rounded-r-2xl">
+                        <div className="col-span-6 bg-base-300 p-10 border border-gray-300 border-l-0 rounded-r-2xl">
                               <h1>dashboard right side</h1>
                               <Outlet />
                         </div>
