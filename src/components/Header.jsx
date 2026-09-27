@@ -132,15 +132,20 @@ const Header = () => {
                                                                         }{" "}
                                                                         Items
                                                                   </span>
-                                                                  <span className="text-info">
+                                                                  <span className="text-natural text-[1rem]">
                                                                         Subtotal:
                                                                         $0
                                                                   </span>
                                                                   <div className="card-actions">
-                                                                        <button className="btn btn-primary btn-block">
+                                                                        <Link
+                                                                              to={
+                                                                                    "/dashboard/my-cart"
+                                                                              }
+                                                                              className="btn btn-primary text-white btn-block"
+                                                                        >
                                                                               View
                                                                               cart
-                                                                        </button>
+                                                                        </Link>
                                                                   </div>
                                                             </div>
                                                       </div>
