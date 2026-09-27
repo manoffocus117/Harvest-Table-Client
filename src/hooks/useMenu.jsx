@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useMenu = () => {
       // state for menu
@@ -6,14 +7,15 @@ const useMenu = () => {
 
       // state for loader
       const [loading, set_loading] = useState(true);
+
+      const axios_secure = useAxiosSecure();
+
       // loading menu data
       useEffect(() => {
-            fetch("http://localhost:3000/menu")
-                  .then((res) => res.json())
-                  .then((data) => {
-                        set_menu(data);
-                        set_loading(false);
-                  });
+            axios_secure.get("/menu").then((res) => {
+                  set_menu(res.data);
+                  set_loading(false);
+            });
       }, []);
       return [menu, loading];
 };

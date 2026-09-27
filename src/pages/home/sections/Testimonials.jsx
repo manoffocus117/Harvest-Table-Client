@@ -4,15 +4,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import { RiDoubleQuotesL } from "@remixicon/react";
 import { Rating } from "@smastrom/react-rating";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Testimonials = () => {
       // state for testimonials data
       const [testimonials, set_testimonials] = useState([]);
+
+      const axios_secure = useAxiosSecure();
+
       // loading testimonials data
       useEffect(() => {
-            fetch("http://localhost:3000/reviews")
-                  .then((res) => res.json())
-                  .then((data) => set_testimonials(data));
+            axios_secure
+                  .get("/reviews")
+                  .then((res) => set_testimonials(res.data));
       }, []);
 
       return (
