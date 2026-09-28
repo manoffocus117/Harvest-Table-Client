@@ -80,7 +80,6 @@ const Dashboard_layout = () => {
                         </div>
                         {/* dashboard main content */}
                         <div className="col-span-6 bg-base-300 p-10 border border-gray-300 border-l-0 rounded-r-2xl">
-                              <h1>dashboard right side</h1>
                               <Outlet />
                         </div>
                   </section>
