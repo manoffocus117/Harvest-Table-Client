@@ -40,7 +40,7 @@ const Our_menu = () => {
                   <Menu_category
                         items={desserts}
                         bg_img={Dessert_bg}
-                        title={"dessert"}
+                        title={"desserts"}
                         subtitle={"this is some desserts"}
                   />
 
@@ -65,7 +65,7 @@ const Our_menu = () => {
                   <Menu_category
                         items={soup}
                         bg_img={Soup_bg}
-                        title={"soup"}
+                        title={"soups"}
                         subtitle={"this is some soup"}
                   />
             </>

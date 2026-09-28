@@ -22,7 +22,7 @@ const Menu_category = ({ items, title, subtitle, bg_img }) => {
                         </div>
                         {title ? (
                               <Link
-                                    to={`/order/${title}`}
+                                    to={`/order-food/${title}`}
                                     className="btn bg-transparent shadow-none border-0 border-b-2 border-black px-4 py-2 rounded-md capitalize hover:bg-primary hover:text-white hover:border-none"
                               >
                                     {`Order ${title}`}
