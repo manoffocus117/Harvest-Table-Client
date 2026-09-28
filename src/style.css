@@ -110,6 +110,14 @@ a.active {
       border-radius: 50%;
 }
 
+.dashboard-left-border-radius {
+      border-radius: 1rem 0rem 0rem 1rem;
+}
+
+.dashboard-right-border-radius {
+      border-radius: 0rem 1rem 1rem 0rem;
+}
+
 @media (max-width: 400px) {
       section {
             margin: 6.25rem 1rem;
@@ -121,5 +129,12 @@ a.active {
       .swiper-pagination-bullet,
       .swiper-pagination-bullet-active {
             display: none;
+      }
+      .dashboard-left-border-radius {
+            border-radius: 1rem 1rem 0rem 0rem;
+      }
+
+      .dashboard-right-border-radius {
+            border-radius: 0rem 0rem 1rem 1rem;
       }
 }

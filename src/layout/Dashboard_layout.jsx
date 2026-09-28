@@ -71,15 +71,15 @@ const Dashboard_layout = () => {
                   <Helmet>
                         <title>Harvest Table | Dashboard</title>
                   </Helmet>
-                  <section className="grid grid-cols-8">
+                  <section className="grid grid-cols-1 md:grid-cols-8">
                         {/* dashboard sidebar */}
-                        <div className="col-span-2 h-full p-10 border border-gray-300 rounded-l-2xl">
+                        <div className="col-span-2 h-full p-10 border border-gray-300 border-b-0 md:border-b dashboard-left-border-radius">
                               <menu className="flex flex-col gap-5">
                                     {dashboard_links}
                               </menu>
                         </div>
                         {/* dashboard main content */}
-                        <div className="col-span-6 bg-base-300 p-10 border border-gray-300 border-l-0 rounded-r-2xl">
+                        <div className="col-span-6 bg-base-300 p-10 border border-gray-300 md:border-l-0 dashboard-right-border-radius">
                               <Outlet />
                         </div>
                   </section>
