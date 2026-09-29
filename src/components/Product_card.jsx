@@ -25,8 +25,6 @@ const Product_card = ({ item }) => {
                         price,
                   };
                   axios_secure.post("/cart", cart_item).then((res) => {
-                        console.log(res.data);
-
                         if (res.data.insertedId) {
                               Swal.fire({
                                     icon: "success",
