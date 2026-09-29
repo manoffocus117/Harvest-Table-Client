@@ -4,16 +4,14 @@ import useCart from "./../../hooks/useCart";
 import { RiDeleteBin2Line } from "@remixicon/react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useTotalPrice from "../../hooks/useTotalPrice";
 
 const My_cart = () => {
       const [cart, refetch] = useCart();
       const axios_secure = useAxiosSecure();
 
-      const total_price = cart.reduce((total, item) => total + item.price, 0);
-      const formatted_price = new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-      }).format(total_price);
+      // total price
+      const [formatted_price] = useTotalPrice();
 
       const handle_delete = (id) => {
             Swal.fire({

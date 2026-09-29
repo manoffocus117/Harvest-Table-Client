@@ -10,6 +10,7 @@ import Logo from "../assets/logo.png";
 import Auth_context from "../context/Auth_context";
 import Swal from "sweetalert2";
 import useCart from "../hooks/useCart";
+import useTotalPrice from "../hooks/useTotalPrice";
 
 const Header = () => {
       // auth context
@@ -23,7 +24,8 @@ const Header = () => {
 
       // cart item
       const [cart] = useCart();
-
+      // total price
+      const [formatted_price] = useTotalPrice();
       // handle scroll effect
       useEffect(() => {
             const handle_scroll = () => {
@@ -133,13 +135,15 @@ const Header = () => {
                                                                         Items
                                                                   </span>
                                                                   <span className="text-natural text-[1rem]">
-                                                                        Subtotal:
-                                                                        $0
+                                                                        Subtotal:{" "}
+                                                                        {
+                                                                              formatted_price
+                                                                        }
                                                                   </span>
                                                                   <div className="card-actions">
                                                                         <Link
                                                                               to={
-                                                                                    "/dashboard/my-cart"
+                                                                                    "/user-dashboard/my-cart"
                                                                               }
                                                                               className="btn btn-primary text-white btn-block"
                                                                         >
