@@ -41,11 +41,12 @@ h3 {
 }
 
 p,
-li,
 a,
+li,
 span,
 label,
 input,
+table,
 button {
       font-family: "Poppins", sans-serif;
 }
