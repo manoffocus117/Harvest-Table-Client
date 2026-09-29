@@ -2,15 +2,45 @@ import React from "react";
 import Title from "../../components/Title";
 import useCart from "./../../hooks/useCart";
 import { RiDeleteBin2Line } from "@remixicon/react";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const My_cart = () => {
-      const [cart] = useCart();
+      const [cart, refetch] = useCart();
+      const axios_secure = useAxiosSecure();
 
       const total_price = cart.reduce((total, item) => total + item.price, 0);
       const formatted_price = new Intl.NumberFormat("en-US", {
             style: "currency",
             currency: "USD",
       }).format(total_price);
+
+      const handle_delete = (id) => {
+            Swal.fire({
+                  title: "Are you sure?",
+                  text: "You won't be able to revert this!",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "rgb(251, 170, 0)",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                  if (result.isConfirmed)
+                        axios_secure.delete(`/cart/${id}`).then((res) => {
+                              if (res.data.deletedCount > 0) {
+                                    Swal.fire({
+                                          title: "Deleted!",
+                                          text: "Your item has been deleted.",
+                                          icon: "success",
+                                          confirmButtonColor:
+                                                "rgb(251, 170, 0)",
+                                          timer: 3000,
+                                    });
+                                    refetch();
+                              }
+                        });
+            });
+      };
 
       return (
             <>
@@ -57,7 +87,14 @@ const My_cart = () => {
                                                       <td>{item.name}</td>
                                                       <td>${item.price}</td>
                                                       <th>
-                                                            <button className="btn bg-red-600 px-2 text-white">
+                                                            <button
+                                                                  onClick={() =>
+                                                                        handle_delete(
+                                                                              item._id,
+                                                                        )
+                                                                  }
+                                                                  className="btn bg-red-600 px-2 text-white"
+                                                            >
                                                                   <RiDeleteBin2Line />
                                                             </button>
                                                       </th>
