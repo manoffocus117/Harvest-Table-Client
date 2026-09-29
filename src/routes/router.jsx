@@ -8,9 +8,8 @@ import Contact_us from "../pages/contact/Contact_us";
 import Error from "../pages/Not_found";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
-import Profile from "../pages/Profile";
 import Private_route from "./Private_route";
-import Dashboard_layout from "../layout/Dashboard_layout";
+import User_dashboard from "../layout/User_dashboard";
 import My_cart from "../pages/user_dashboard/My_cart";
 import User_home from "./../pages/user_dashboard/User_home";
 import Reservation from "./../pages/user_dashboard/Reservation";
@@ -75,21 +74,13 @@ const router = createBrowserRouter([
                         path: "register",
                         Component: Register,
                   },
-                  {
-                        path: "profile",
-                        element: (
-                              <Private_route>
-                                    <Profile />
-                              </Private_route>
-                        ),
-                  },
             ],
       },
       {
-            path: "dashboard",
+            path: "user-dashboard",
             element: (
                   <Private_route>
-                        <Dashboard_layout />
+                        <User_dashboard />
                   </Private_route>
             ),
             children: [
