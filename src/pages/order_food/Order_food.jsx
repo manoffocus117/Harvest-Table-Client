@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Outlet, useNavigation } from "react-router";
+import { NavLink, Outlet } from "react-router";
 import { Helmet } from "react-helmet-async";
 import Hero from "./../../components/Hero";
 import Bg_image from "../../assets/shop/banner2.jpg";
@@ -8,16 +8,36 @@ const Order_food = () => {
       const food_menu_links = (
             <>
                   <li>
-                        <NavLink to={"/order-food/desserts"}>Desserts</NavLink>
+                        <NavLink
+                              to={"/order-food/desserts"}
+                              className="hover:underline"
+                        >
+                              Desserts
+                        </NavLink>
                   </li>
                   <li>
-                        <NavLink to={"/order-food/pizza"}>Pizza</NavLink>
+                        <NavLink
+                              to={"/order-food/pizza"}
+                              className="hover:underline"
+                        >
+                              Pizza
+                        </NavLink>
                   </li>
                   <li>
-                        <NavLink to={"/order-food/salad"}>Salad</NavLink>
+                        <NavLink
+                              to={"/order-food/salad"}
+                              className="hover:underline"
+                        >
+                              Salad
+                        </NavLink>
                   </li>
                   <li>
-                        <NavLink to={"/order-food/soups"}>Soups</NavLink>
+                        <NavLink
+                              to={"/order-food/soups"}
+                              className="hover:underline"
+                        >
+                              Soups
+                        </NavLink>
                   </li>
             </>
       );

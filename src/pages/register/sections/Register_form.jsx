@@ -8,8 +8,12 @@ import {
 } from "react-simple-captcha";
 import Auth_context from "../../../context/Auth_context";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const Register_form = () => {
+      // axios public instance
+      const axios_public = useAxiosPublic();
+
       // state for submit button disabled
       const [disabled, set_disabled] = useState(true);
 
@@ -44,15 +48,30 @@ const Register_form = () => {
                         const user = result.user;
                         update_user_profile(name, photo_url)
                               .then(() => {
-                                    Swal.fire({
-                                          title: "Success!",
-                                          text: "Registration success",
-                                          icon: "success",
-                                          confirmButtonColor:
-                                                "rgb(251, 170, 0)",
-                                    });
-                                    event.target.reset();
-                                    navigate("/");
+                                    // create a new user entry in the database
+                                    const user_info = {
+                                          name: name,
+                                          email: email,
+                                    };
+                                    axios_public
+                                          .post("/users", user_info)
+                                          .then((res) => {
+                                                console.log(
+                                                      "user added to the database",
+                                                      res.data,
+                                                );
+                                                if (res.data.insertedId) {
+                                                      Swal.fire({
+                                                            title: "Success!",
+                                                            text: "Registration success",
+                                                            icon: "success",
+                                                            confirmButtonColor:
+                                                                  "rgb(251, 170, 0)",
+                                                      });
+                                                      event.target.reset();
+                                                      navigate("/");
+                                                }
+                                          });
                               })
                               .catch((error) => {
                                     Swal.fire({

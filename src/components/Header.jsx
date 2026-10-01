@@ -112,7 +112,7 @@ const Header = () => {
                                                       <div
                                                             tabIndex={0}
                                                             role="button"
-                                                            className="btn btn-ghost btn-circle border border-gray-200"
+                                                            className="btn btn-ghost btn-circle bg-base-300"
                                                       >
                                                             <div className="indicator">
                                                                   <RiShoppingCart2Line />
