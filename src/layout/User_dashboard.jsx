@@ -79,7 +79,7 @@ const User_dashboard = () => {
                               </menu>
                         </div>
                         {/* dashboard main content */}
-                        <div className="col-span-6 bg-base-300 p-10 border border-gray-300 md:border-l-0 dashboard-right-border-radius">
+                        <div className="col-span-6 bg-base-300 p-4 md:p-10 border border-gray-300 md:border-l-0 dashboard-right-border-radius">
                               <Outlet />
                         </div>
                   </section>

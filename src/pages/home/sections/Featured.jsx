@@ -32,7 +32,7 @@ const Featured = () => {
                                           className="rounded-md"
                                     />
                               </figure>
-                              <div className="w-8/12">
+                              <div className="w-full md:w-8/12">
                                     <p className="mb-5 text-justify">
                                           <span>March 20, 2023</span> <br />
                                           <span>

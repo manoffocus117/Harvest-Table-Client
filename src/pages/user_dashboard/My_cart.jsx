@@ -43,7 +43,7 @@ const My_cart = () => {
       return (
             <>
                   <Title sub_title={"My cart"} title={"Wanna add more?"} />
-                  <div className="bg-white p-10 rounded-2xl">
+                  <div className="bg-white p-4 md:p-10 rounded-2xl">
                         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
                               <h1 className="text-3xl">
                                     Total items: {cart.length}
