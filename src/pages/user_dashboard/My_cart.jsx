@@ -5,6 +5,7 @@ import { RiDeleteBin2Line } from "@remixicon/react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useTotalPrice from "../../hooks/useTotalPrice";
+import { Link } from "react-router";
 
 const My_cart = () => {
       const [cart, refetch] = useCart();
@@ -55,52 +56,73 @@ const My_cart = () => {
                                     Pay Now
                               </button>
                         </div>
-                        <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 mt-5">
-                              <table className="table text-center">
-                                    <thead className="bg-primary text-white">
-                                          <tr>
-                                                <th>No.</th>
-                                                <th>Image</th>
-                                                <th>Item Name</th>
-                                                <th>Price</th>
-                                                <th>Action</th>
-                                          </tr>
-                                    </thead>
-                                    <tbody>
-                                          {cart.map((item, index) => (
-                                                <tr key={item._id}>
-                                                      <th>{index + 1}</th>
-                                                      <td>
-                                                            <div className="avatar">
-                                                                  <div className="mask mask-circle h-12 w-12">
-                                                                        <img
-                                                                              src={
-                                                                                    item.image
-                                                                              }
-                                                                              alt="Avatar Tailwind CSS Component"
-                                                                        />
-                                                                  </div>
-                                                            </div>
-                                                      </td>
-                                                      <td>{item.name}</td>
-                                                      <td>${item.price}</td>
-                                                      <th>
-                                                            <button
-                                                                  onClick={() =>
-                                                                        handle_delete(
-                                                                              item._id,
-                                                                        )
-                                                                  }
-                                                                  className="btn bg-red-600 px-2 text-white"
-                                                            >
-                                                                  <RiDeleteBin2Line />
-                                                            </button>
-                                                      </th>
+                        {/* conditionally render the cart items */}
+                        {cart.length > 0 ? (
+                              <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 mt-5">
+                                    <table className="table text-center">
+                                          <thead className="bg-primary text-white">
+                                                <tr>
+                                                      <th>No.</th>
+                                                      <th>Image</th>
+                                                      <th>Item Name</th>
+                                                      <th>Price</th>
+                                                      <th>Action</th>
                                                 </tr>
-                                          ))}
-                                    </tbody>
-                              </table>
-                        </div>
+                                          </thead>
+                                          <tbody>
+                                                {cart.map((item, index) => (
+                                                      <tr key={item._id}>
+                                                            <th>{index + 1}</th>
+                                                            <td>
+                                                                  <div className="avatar">
+                                                                        <div className="mask mask-circle h-12 w-12">
+                                                                              <img
+                                                                                    src={
+                                                                                          item.image
+                                                                                    }
+                                                                                    alt="Avatar Tailwind CSS Component"
+                                                                              />
+                                                                        </div>
+                                                                  </div>
+                                                            </td>
+                                                            <td>{item.name}</td>
+                                                            <td>
+                                                                  ${item.price}
+                                                            </td>
+                                                            <th>
+                                                                  <button
+                                                                        onClick={() =>
+                                                                              handle_delete(
+                                                                                    item._id,
+                                                                              )
+                                                                        }
+                                                                        className="btn bg-red-600 px-2 text-white"
+                                                                  >
+                                                                        <RiDeleteBin2Line />
+                                                                  </button>
+                                                            </th>
+                                                      </tr>
+                                                ))}
+                                          </tbody>
+                                    </table>
+                              </div>
+                        ) : (
+                              <div className="flex flex-col items-center justify-center gap-4 my-10">
+                                    <h1 className="text-5xl font-bold">
+                                          Your cart is empty
+                                    </h1>
+                                    <p className="text-gray-500">
+                                          You haven't added any items to your
+                                          cart yet.
+                                    </p>
+                                    <Link
+                                          to={"/order-food"}
+                                          className="btn btn-primary text-white"
+                                    >
+                                          Add items to your cart
+                                    </Link>
+                              </div>
+                        )}
                   </div>
             </>
       );

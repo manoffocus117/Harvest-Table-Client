@@ -195,7 +195,7 @@ const Header = () => {
                                                             <li>
                                                                   <NavLink
                                                                         to={
-                                                                              "/dashboard/user-home"
+                                                                              "/user-dashboard/user-home"
                                                                         }
                                                                         className="justify-between"
                                                                   >
