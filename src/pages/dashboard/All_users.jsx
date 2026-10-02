@@ -3,11 +3,12 @@ import Title from "./../../components/Title";
 import { RiAdminLine, RiDeleteBin2Line, RiGroupLine } from "@remixicon/react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const All_users = () => {
       // loading all users data using tanstack & axios
       const axios_secure = useAxiosSecure();
-      const { data: users = [] } = useQuery({
+      const { data: users = [], refetch } = useQuery({
             queryKey: ["users"],
             queryFn: async () => {
                   const res = await axios_secure.get("/users");
@@ -16,7 +17,34 @@ const All_users = () => {
       });
 
       // handler for delete user
-      const handle_delete_user = (id) => {};
+      const handle_delete_user = (user) => {
+            Swal.fire({
+                  title: "Are you sure?",
+                  text: "You won't be able to revert this!",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "rgb(251, 170, 0)",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                  if (result.isConfirmed)
+                        axios_secure
+                              .delete(`/users/${user._id}`)
+                              .then((res) => {
+                                    if (res.data.deletedCount > 0) {
+                                          Swal.fire({
+                                                title: "Deleted!",
+                                                text: "Your item has been deleted.",
+                                                icon: "success",
+                                                confirmButtonColor:
+                                                      "rgb(251, 170, 0)",
+                                                timer: 3000,
+                                          });
+                                          refetch();
+                                    }
+                              });
+            });
+      };
       return (
             <>
                   <Title sub_title={"How many??"} title={"Manage users"} />
