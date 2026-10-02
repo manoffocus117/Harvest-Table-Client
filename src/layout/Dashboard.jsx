@@ -4,16 +4,23 @@ import { NavLink, Outlet } from "react-router";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {
+      RiBookletLine,
       RiCalendarLine,
       RiCalendarScheduleLine,
       RiFeedbackLine,
+      RiGroupLine,
       RiHome4Line,
+      RiListSettingsLine,
+      RiRestaurant2Line,
       RiShoppingCart2Line,
       RiWallet2Line,
 } from "@remixicon/react";
 
 const Dashboard = () => {
-      const dashboard_links = (
+      // admin permission
+      const is_admin = true;
+
+      const user_dashboard_links = (
             <>
                   <li>
                         <NavLink
@@ -65,6 +72,51 @@ const Dashboard = () => {
                   </li>
             </>
       );
+
+      const admin_dashboard_links = (
+            <>
+                  <li>
+                        <NavLink
+                              to={"/dashboard/admin-home"}
+                              className="flex items-center gap-2"
+                        >
+                              <RiHome4Line /> Admin Home
+                        </NavLink>
+                  </li>
+                  <li>
+                        <NavLink
+                              to={"/dashboard/add-item"}
+                              className="flex items-center gap-2"
+                        >
+                              <RiRestaurant2Line /> Add Item
+                        </NavLink>
+                  </li>
+                  <li>
+                        <NavLink
+                              to={"/dashboard/manage-items"}
+                              className="flex items-center gap-2"
+                        >
+                              <RiListSettingsLine /> Manage Items
+                        </NavLink>
+                  </li>
+                  <li>
+                        <NavLink
+                              to={"/dashboard/manage-bookings"}
+                              className="flex items-center gap-2"
+                        >
+                              <RiBookletLine /> Manage Bookings
+                        </NavLink>
+                  </li>
+                  <li>
+                        <NavLink
+                              to={"/dashboard/all-users"}
+                              className="flex items-center gap-2"
+                        >
+                              <RiGroupLine /> All Users
+                        </NavLink>
+                  </li>
+            </>
+      );
       return (
             <>
                   <Header />
@@ -75,7 +127,9 @@ const Dashboard = () => {
                         {/* dashboard sidebar */}
                         <div className="col-span-2 h-full p-10 border border-gray-300 border-b-0 md:border-b dashboard-left-border-radius">
                               <menu className="flex flex-col gap-5">
-                                    {dashboard_links}
+                                    {is_admin
+                                          ? admin_dashboard_links
+                                          : user_dashboard_links}
                               </menu>
                         </div>
                         {/* dashboard main content */}
