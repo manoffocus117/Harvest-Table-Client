@@ -1,6 +1,6 @@
 import React from "react";
 import Title from "./../../components/Title";
-import { RiDeleteBin2Line } from "@remixicon/react";
+import { RiAdminLine, RiDeleteBin2Line, RiGroupLine } from "@remixicon/react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
@@ -14,7 +14,7 @@ const All_users = () => {
                   return res.data;
             },
       });
-      console.log(users);
+
       // handler for delete user
       const handle_delete_user = (id) => {};
       return (
@@ -44,8 +44,25 @@ const All_users = () => {
                                                       <th>{index + 1}</th>
                                                       <td>{user?.name}</td>
                                                       <td>{user?.email}</td>
-                                                      <td>{user?.role}</td>
-                                                      <th>
+                                                      <td>
+                                                            <button
+                                                                  className="btn bg-primary px-2 text-white tooltip tooltip-primary tooltip-right"
+                                                                  data-tip={
+                                                                        user?.role ===
+                                                                        "admin"
+                                                                              ? "Admin"
+                                                                              : "User"
+                                                                  }
+                                                            >
+                                                                  {user?.role ===
+                                                                  "admin" ? (
+                                                                        <RiAdminLine />
+                                                                  ) : (
+                                                                        <RiGroupLine />
+                                                                  )}
+                                                            </button>
+                                                      </td>
+                                                      <td>
                                                             <button
                                                                   onClick={() =>
                                                                         handle_delete_user()
@@ -54,7 +71,7 @@ const All_users = () => {
                                                             >
                                                                   <RiDeleteBin2Line />
                                                             </button>
-                                                      </th>
+                                                      </td>
                                                 </tr>
                                           ))}
                                     </tbody>

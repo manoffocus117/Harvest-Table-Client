@@ -119,6 +119,10 @@ a.active {
       border-radius: 0rem 1rem 1rem 0rem;
 }
 
+.tooltip-primary[data-tip]:before {
+      color: #ffffff;
+}
+
 @media (max-width: 400px) {
       section {
             margin: 6.25rem 1rem;
