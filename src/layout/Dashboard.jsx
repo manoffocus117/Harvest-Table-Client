@@ -12,12 +12,12 @@ import {
       RiWallet2Line,
 } from "@remixicon/react";
 
-const User_dashboard = () => {
+const Dashboard = () => {
       const dashboard_links = (
             <>
                   <li>
                         <NavLink
-                              to={"/user-dashboard/user-home"}
+                              to={"/dashboard/user-home"}
                               className="flex items-center gap-2"
                         >
                               <RiHome4Line /> User Home
@@ -25,7 +25,7 @@ const User_dashboard = () => {
                   </li>
                   <li>
                         <NavLink
-                              to={"/user-dashboard/reservation"}
+                              to={"/dashboard/reservation"}
                               className="flex items-center gap-2"
                         >
                               <RiCalendarLine /> Reservation
@@ -33,7 +33,7 @@ const User_dashboard = () => {
                   </li>
                   <li>
                         <NavLink
-                              to={"/user-dashboard/payment-history"}
+                              to={"/dashboard/payment-history"}
                               className="flex items-center gap-2"
                         >
                               <RiWallet2Line /> Payment History
@@ -41,7 +41,7 @@ const User_dashboard = () => {
                   </li>
                   <li>
                         <NavLink
-                              to={"/user-dashboard/my-cart"}
+                              to={"/dashboard/my-cart"}
                               className="flex items-center gap-2"
                         >
                               <RiShoppingCart2Line /> My Cart
@@ -49,7 +49,7 @@ const User_dashboard = () => {
                   </li>
                   <li>
                         <NavLink
-                              to={"/user-dashboard/add-review"}
+                              to={"/dashboard/add-review"}
                               className="flex items-center gap-2"
                         >
                               <RiFeedbackLine /> Add Review
@@ -57,7 +57,7 @@ const User_dashboard = () => {
                   </li>
                   <li>
                         <NavLink
-                              to={"/user-dashboard/my-booking"}
+                              to={"/dashboard/my-booking"}
                               className="flex items-center gap-2"
                         >
                               <RiCalendarScheduleLine /> My Booking
@@ -88,4 +88,4 @@ const User_dashboard = () => {
       );
 };
 
-export default User_dashboard;
+export default Dashboard;

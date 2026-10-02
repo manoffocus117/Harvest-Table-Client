@@ -64,7 +64,7 @@ const Header = () => {
                   <NavLink to={"/order-food"}>Order Food</NavLink>
                   <NavLink to={"/contact-us"}>Contact Us</NavLink>
                   {user ? (
-                        <NavLink to={"/user-dashboard"}>Dashboard</NavLink>
+                        <NavLink to={"/dashboard"}>Dashboard</NavLink>
                   ) : (
                         <>
                               <NavLink to={"/login"}>Login</NavLink>
@@ -195,7 +195,7 @@ const Header = () => {
                                                             <li>
                                                                   <NavLink
                                                                         to={
-                                                                              "/user-dashboard/user-home"
+                                                                              "/dashboard/user-home"
                                                                         }
                                                                         className="justify-between"
                                                                   >

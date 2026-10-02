@@ -9,13 +9,13 @@ import Error from "../pages/Not_found";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Private_route from "./Private_route";
-import User_dashboard from "../layout/User_dashboard";
-import My_cart from "../pages/user_dashboard/My_cart";
-import User_home from "./../pages/user_dashboard/User_home";
-import Reservation from "./../pages/user_dashboard/Reservation";
-import Payment_history from "./../pages/user_dashboard/Payment_history";
-import Add_review from "./../pages/user_dashboard/Add_review";
-import My_booking from "./../pages/user_dashboard/My_booking";
+import Dashboard from "../layout/Dashboard";
+import My_cart from "../pages/dashboard/My_cart";
+import User_home from "./../pages/dashboard/User_home";
+import Reservation from "./../pages/dashboard/Reservation";
+import Payment_history from "./../pages/dashboard/Payment_history";
+import Add_review from "./../pages/dashboard/Add_review";
+import My_booking from "./../pages/dashboard/My_booking";
 import Desserts from "../pages/order_food/sections/Desserts";
 import Pizza from "../pages/order_food/sections/Pizza";
 import Salad from "../pages/order_food/sections/Salad";
@@ -77,10 +77,10 @@ const router = createBrowserRouter([
             ],
       },
       {
-            path: "user-dashboard",
+            path: "dashboard",
             element: (
                   <Private_route>
-                        <User_dashboard />
+                        <Dashboard />
                   </Private_route>
             ),
             children: [
