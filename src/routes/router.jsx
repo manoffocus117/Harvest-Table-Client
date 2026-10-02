@@ -93,6 +93,7 @@ const router = createBrowserRouter([
                         index: true,
                         Component: () => <Navigate to="user-home" replace />,
                   },
+                  // users routes
                   {
                         path: "user-home",
                         Component: User_home,
@@ -117,6 +118,7 @@ const router = createBrowserRouter([
                         path: "my-booking",
                         Component: My_booking,
                   },
+                  // admin routes
                   {
                         path: "admin-home",
                         Component: Admin_home,

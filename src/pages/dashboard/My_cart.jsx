@@ -14,7 +14,7 @@ const My_cart = () => {
       // total price
       const [formatted_price] = useTotalPrice();
 
-      const handle_delete = (id) => {
+      const handle_delete_cart_item = (id) => {
             Swal.fire({
                   title: "Are you sure?",
                   text: "You won't be able to revert this!",
@@ -92,7 +92,7 @@ const My_cart = () => {
                                                             <th>
                                                                   <button
                                                                         onClick={() =>
-                                                                              handle_delete(
+                                                                              handle_delete_cart_item(
                                                                                     item._id,
                                                                               )
                                                                         }
