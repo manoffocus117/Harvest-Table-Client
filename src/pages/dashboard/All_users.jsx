@@ -16,8 +16,25 @@ const All_users = () => {
             },
       });
 
+      const handle_make_admin = (user) => {
+            axios_secure.patch(`/users/${user._id}`).then((res) => {
+                  console.log(res.data);
+                  if (res.data.modifiedCount > 0) {
+                        Swal.fire({
+                              icon: "success",
+                              title: "success",
+                              text: `${user.name} is an admin now`,
+                              showConfirmButton: true,
+                              confirmButtonColor: "rgb(251, 170, 0)",
+                              timer: 1500,
+                        });
+                        refetch();
+                  }
+            });
+      };
+
       // handler for delete user
-      const handle_delete_user = (user) => {
+      const handle_delete_user = (user_id) => {
             Swal.fire({
                   title: "Are you sure?",
                   text: "You won't be able to revert this!",
@@ -29,7 +46,7 @@ const All_users = () => {
             }).then((result) => {
                   if (result.isConfirmed)
                         axios_secure
-                              .delete(`/users/${user._id}`)
+                              .delete(`/users/${user_id._id}`)
                               .then((res) => {
                                     if (res.data.deletedCount > 0) {
                                           Swal.fire({
@@ -73,22 +90,31 @@ const All_users = () => {
                                                       <td>{user?.name}</td>
                                                       <td>{user?.email}</td>
                                                       <td>
-                                                            <button
-                                                                  className="btn bg-primary px-2 text-white tooltip tooltip-primary tooltip-right"
-                                                                  data-tip={
-                                                                        user?.role ===
-                                                                        "admin"
-                                                                              ? "Admin"
-                                                                              : "User"
-                                                                  }
-                                                            >
-                                                                  {user?.role ===
-                                                                  "admin" ? (
+                                                            {user?.role ===
+                                                            "admin" ? (
+                                                                  <span
+                                                                        className="bg-primary p-2 rounded text-white tooltip tooltip-primary tooltip-right"
+                                                                        data-tip={
+                                                                              user?.role
+                                                                        }
+                                                                  >
                                                                         <RiAdminLine />
-                                                                  ) : (
+                                                                  </span>
+                                                            ) : (
+                                                                  <button
+                                                                        onClick={() =>
+                                                                              handle_make_admin(
+                                                                                    user,
+                                                                              )
+                                                                        }
+                                                                        className="btn bg-primary px-2 text-white tooltip tooltip-primary tooltip-right"
+                                                                        data-tip={
+                                                                              "User"
+                                                                        }
+                                                                  >
                                                                         <RiGroupLine />
-                                                                  )}
-                                                            </button>
+                                                                  </button>
+                                                            )}
                                                       </td>
                                                       <td>
                                                             <button

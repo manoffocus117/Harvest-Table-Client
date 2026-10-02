@@ -120,6 +120,7 @@ a.active {
 }
 
 .tooltip-primary[data-tip]:before {
+      text-transform: capitalize;
       color: #ffffff;
 }
 
