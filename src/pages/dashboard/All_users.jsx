@@ -18,7 +18,6 @@ const All_users = () => {
 
       const handle_make_admin = (user) => {
             axios_secure.patch(`/users/${user._id}`).then((res) => {
-                  console.log(res.data);
                   if (res.data.modifiedCount > 0) {
                         Swal.fire({
                               icon: "success",
@@ -34,7 +33,7 @@ const All_users = () => {
       };
 
       // handler for delete user
-      const handle_delete_user = (user_id) => {
+      const handle_delete_user = (user) => {
             Swal.fire({
                   title: "Are you sure?",
                   text: "You won't be able to revert this!",
@@ -46,7 +45,7 @@ const All_users = () => {
             }).then((result) => {
                   if (result.isConfirmed)
                         axios_secure
-                              .delete(`/users/${user_id._id}`)
+                              .delete(`/users/${user._id}`)
                               .then((res) => {
                                     if (res.data.deletedCount > 0) {
                                           Swal.fire({
@@ -119,7 +118,9 @@ const All_users = () => {
                                                       <td>
                                                             <button
                                                                   onClick={() =>
-                                                                        handle_delete_user()
+                                                                        handle_delete_user(
+                                                                              user,
+                                                                        )
                                                                   }
                                                                   className="btn bg-red-600 px-2 text-white"
                                                             >
