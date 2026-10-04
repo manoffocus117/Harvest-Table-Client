@@ -25,6 +25,7 @@ import Add_item from "../pages/dashboard/Add_item";
 import Manage_items from "../pages/dashboard/Manage_items";
 import Manage_bookings from "../pages/dashboard/Manage_bookings";
 import All_users from "../pages/dashboard/All_users";
+import Admin_route from "./Admin_route";
 
 const router = createBrowserRouter([
       {
@@ -121,23 +122,43 @@ const router = createBrowserRouter([
                   // admin routes
                   {
                         path: "admin-home",
-                        Component: Admin_home,
+                        element: (
+                              <Admin_route>
+                                    <Admin_home />
+                              </Admin_route>
+                        ),
                   },
                   {
                         path: "add-item",
-                        Component: Add_item,
+                        element: (
+                              <Admin_route>
+                                    <Add_item />
+                              </Admin_route>
+                        ),
                   },
                   {
                         path: "manage-items",
-                        Component: Manage_items,
+                        element: (
+                              <Admin_route>
+                                    <Manage_items />
+                              </Admin_route>
+                        ),
                   },
                   {
                         path: "manage-bookings",
-                        Component: Manage_bookings,
+                        element: (
+                              <Admin_route>
+                                    <Manage_bookings />
+                              </Admin_route>
+                        ),
                   },
                   {
                         path: "all-users",
-                        Component: All_users,
+                        element: (
+                              <Admin_route>
+                                    <All_users />
+                              </Admin_route>
+                        ),
                   },
             ],
       },
