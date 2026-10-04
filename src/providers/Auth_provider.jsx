@@ -10,6 +10,7 @@ import {
       signInWithPopup,
 } from "firebase/auth";
 import auth from "./../config/firebase.config";
+import useAxiosPublic from "./../hooks/useAxiosPublic";
 
 const Auth_provider = ({ children }) => {
       // state for holding user data
@@ -19,6 +20,9 @@ const Auth_provider = ({ children }) => {
 
       // google provider
       const google_provider = new GoogleAuthProvider();
+
+      // axios
+      const axios_public = useAxiosPublic();
 
       // create user with email and password
       const create_user = (email, password) => {
@@ -56,6 +60,24 @@ const Auth_provider = ({ children }) => {
       useEffect(() => {
             const unmount = onAuthStateChanged(auth, (current_user) => {
                   set_user(current_user);
+                  // json web token
+                  if (current_user) {
+                        // get token and store client
+                        const user_info = { email: current_user.email };
+                        axios_public
+                              .post("/auth/get-token", user_info)
+                              .then((res) => {
+                                    if (res.data.token) {
+                                          localStorage.setItem(
+                                                "access-token",
+                                                res.data.token,
+                                          );
+                                    }
+                              });
+                  } else {
+                        // remove token
+                        localStorage.removeItem("access-token");
+                  }
                   set_loading(false);
             });
             return () => {
