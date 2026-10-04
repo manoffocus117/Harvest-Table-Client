@@ -16,10 +16,11 @@ import {
       RiWallet2Line,
 } from "@remixicon/react";
 import Scroll_to_top from "../components/Scroll_to_top";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
       // admin permission
-      const is_admin = true;
+      const [is_admin] = useAdmin();
 
       const user_dashboard_links = (
             <>
