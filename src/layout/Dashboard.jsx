@@ -15,6 +15,7 @@ import {
       RiShoppingCart2Line,
       RiWallet2Line,
 } from "@remixicon/react";
+import Scroll_to_top from "../components/Scroll_to_top";
 
 const Dashboard = () => {
       // admin permission
@@ -119,6 +120,7 @@ const Dashboard = () => {
       );
       return (
             <>
+                  <Scroll_to_top />
                   <Header />
                   <Helmet>
                         <title>Harvest Table | User Dashboard</title>
