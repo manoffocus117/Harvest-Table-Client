@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const axios_instance = axios.create({
-      baseURL: "https://harvest-table-server.vercel.app",
-      // baseURL: "http://localhost:3000",
+      baseURL: import.meta.env.VITE_API_URL,
 });
 
 export default axios_instance;
