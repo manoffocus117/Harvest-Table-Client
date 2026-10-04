@@ -1,8 +1,7 @@
-import React from "react";
-import axios_instance from "../api/axios_instance";
+import axios_public from "../api/axios_public";
 
 const useAxiosPublic = () => {
-      return axios_instance;
+      return axios_public;
 };
 
 export default useAxiosPublic;

@@ -10,16 +10,21 @@ const Sign_in_with = () => {
       const navigate = useNavigate();
 
       // handler for google sign in
-      const handle_google_sign_in = () => {
-            sign_in_with_google().then((result) => {
+      const handle_google_sign_in = async () => {
+            try {
+                  const result = await sign_in_with_google();
+
                   const user_info = {
                         name: result.user?.displayName,
                         email: result.user?.email,
                   };
-                  axios_public.post("/users", user_info).then((res) => {
-                        navigate("/");
-                  });
-            });
+
+                  await axios_public.post("/users", user_info);
+
+                  navigate("/");
+            } catch (error) {
+                  console.error("Google sign-in error:", error);
+            }
       };
 
       return (
