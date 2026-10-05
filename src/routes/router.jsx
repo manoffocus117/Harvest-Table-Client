@@ -21,7 +21,7 @@ import Pizza from "../pages/order_food/sections/Pizza";
 import Salad from "../pages/order_food/sections/Salad";
 import Soups from "../pages/order_food/sections/Soups";
 import Admin_home from "../pages/dashboard/Admin_home";
-import Add_item from "../pages/dashboard/Add_item";
+import Add_item from "../pages/dashboard/add_item/Add_item";
 import Manage_items from "../pages/dashboard/Manage_items";
 import Manage_bookings from "../pages/dashboard/Manage_bookings";
 import All_users from "../pages/dashboard/All_users";
