@@ -26,6 +26,7 @@ import Manage_items from "../pages/dashboard/Manage_items";
 import Manage_bookings from "../pages/dashboard/Manage_bookings";
 import All_users from "../pages/dashboard/All_users";
 import Admin_route from "./Admin_route";
+import Dashboard_index from "../components/Dashboard_index";
 
 const router = createBrowserRouter([
       {
@@ -92,7 +93,7 @@ const router = createBrowserRouter([
             children: [
                   {
                         index: true,
-                        Component: () => <Navigate to="user-home" replace />,
+                        Component: Dashboard_index,
                   },
                   // users routes
                   {
