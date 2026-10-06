@@ -1,8 +1,32 @@
 import React from "react";
+import { useFormik } from "formik";
+import add_item_schema from "../../../../schemas/add_item_schema";
 
 const Add_item_form = () => {
+      const {
+            errors,
+            values,
+            touched,
+            handleSubmit,
+            handleChange,
+            handleBlur,
+      } = useFormik({
+            initialValues: {
+                  name: "",
+                  category: "",
+                  price: "",
+                  details: "",
+            },
+
+            // validation schema
+            validationSchema: add_item_schema,
+
+            onSubmit: (values, action) => {
+                  action.resetForm();
+            },
+      });
       return (
-            <form className="fieldset gap-5">
+            <form onSubmit={handleSubmit} className="fieldset gap-5">
                   {/* name field */}
                   <fieldset className="fieldset">
                         <label htmlFor="name">Recipe Name*</label>
@@ -10,35 +34,41 @@ const Add_item_form = () => {
                               name="name"
                               type="text"
                               id="name"
-                              className="input outline-none w-full validator"
+                              className="input outline-none w-full"
                               placeholder="Recipe Name"
-                              pattern="[A-Za-z_ ]*"
-                              minLength="3"
-                              maxLength="50"
-                              required
+                              value={values.name}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
                         />
-                        <p className="validator-hint hidden">
-                              Must be 3 to 50 characters, including
-                              <br />
-                              Capital and small letters
-                        </p>
+                        {errors.name && touched.name ? (
+                              <span className="text-red-500">
+                                    {errors.name}
+                              </span>
+                        ) : null}
                   </fieldset>
                   {/* category & price field */}
                   <fieldset className="fieldset grid-cols-1 md:grid-cols-2">
+                        {/* category field */}
                         <fieldset className="fieldset">
                               <label htmlFor="category">Category*</label>
                               <select
-                                    defaultValue="Select a Category"
+                                    id="category"
+                                    name="category"
                                     className="select outline-none"
+                                    value={values.category}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                               >
-                                    <option disabled={true}>
+                                    <option value="" disabled={true}>
                                           Select a Category
                                     </option>
-                                    <option>Crimson</option>
-                                    <option>Amber</option>
-                                    <option>Velvet</option>
+                                    <option value="Desserts">Desserts</option>
+                                    <option value="Pizza">Pizza</option>
+                                    <option value="Salad">Salad</option>
+                                    <option value="Soups">Soups</option>
                               </select>
                         </fieldset>
+                        {/* price field */}
                         <fieldset className="fieldset">
                               <label htmlFor="name">Price*</label>
                               <input
@@ -47,28 +77,30 @@ const Add_item_form = () => {
                                     id="price"
                                     className="input outline-none w-full"
                                     placeholder="Price"
-                                    pattern="[A-Za-z_ ]*"
-                                    minLength="3"
-                                    maxLength="30"
-                                    required
+                                    value={values.price}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                               />
                         </fieldset>
                   </fieldset>
-                  {/* details */}
+                  {/* details field */}
                   <fieldset className="fieldset">
                         <label htmlFor="category">Recipe Details*</label>
                         <textarea
+                              name="details"
                               className="textarea w-full outline-none"
                               rows={10}
                               placeholder="Details"
-                              required
+                              value={values.details}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
                         ></textarea>
                   </fieldset>
+                  {/* item image field */}
                   <fieldset className="fieldset">
                         <input
                               type="file"
                               className="file-input file-input-ghost"
-                              required
                         />
                   </fieldset>
                   {/* submit button */}
