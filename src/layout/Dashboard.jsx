@@ -126,17 +126,17 @@ const Dashboard = () => {
                   <Helmet>
                         <title>Harvest Table | User Dashboard</title>
                   </Helmet>
-                  <section className="grid grid-cols-1 md:grid-cols-8">
+                  <section className="grid grid-cols-1 md:grid-cols-8 md:grid-rows-1 md:h-150">
                         {/* dashboard sidebar */}
-                        <aside className="col-span-2 h-full bg-white p-10 border border-gray-300 border-b-0 md:border-b dashboard-left-border-radius">
-                              <menu className="flex flex-col gap-5 md:sticky md:top-25 md:max-h-[calc(100vh-8rem)] md:overflow-y-auto">
+                        <aside className="col-span-2 bg-white p-10 border border-gray-300 border-b-0 md:border-b dashboard-left-border-radius md:overflow-y-auto">
+                              <menu className="flex flex-col gap-5">
                                     {is_admin
                                           ? admin_dashboard_links
                                           : user_dashboard_links}
                               </menu>
                         </aside>
                         {/* dashboard main content */}
-                        <div className="col-span-6 bg-base-300 p-4 md:p-10 border border-gray-300 md:border-l-0 dashboard-right-border-radius">
+                        <div className="col-span-6 bg-base-300 p-4 md:p-10 border border-gray-300 md:border-l-0 dashboard-right-border-radius md:overflow-y-auto custom-scrollbar">
                               <Outlet />
                         </div>
                   </section>
