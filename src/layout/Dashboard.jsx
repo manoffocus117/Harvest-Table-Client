@@ -128,13 +128,13 @@ const Dashboard = () => {
                   </Helmet>
                   <section className="grid grid-cols-1 md:grid-cols-8">
                         {/* dashboard sidebar */}
-                        <div className="col-span-2 h-full p-10 border border-gray-300 border-b-0 md:border-b dashboard-left-border-radius">
-                              <menu className="flex flex-col gap-5">
+                        <aside className="col-span-2 h-full bg-white p-10 border border-gray-300 border-b-0 md:border-b dashboard-left-border-radius">
+                              <menu className="flex flex-col gap-5 md:sticky md:top-25 md:max-h-[calc(100vh-8rem)] md:overflow-y-auto">
                                     {is_admin
                                           ? admin_dashboard_links
                                           : user_dashboard_links}
                               </menu>
-                        </div>
+                        </aside>
                         {/* dashboard main content */}
                         <div className="col-span-6 bg-base-300 p-4 md:p-10 border border-gray-300 md:border-l-0 dashboard-right-border-radius">
                               <Outlet />
