@@ -1,10 +1,18 @@
 import React, { useRef } from "react";
 import { useFormik } from "formik";
 import add_item_schema from "../../../../schemas/add_item_schema";
+import useAxiosPublic from "./../../../../hooks/useAxiosPublic";
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Add_item_form = () => {
       // image ref
       const image_ref = useRef(null);
+
+      // axios public
+      const axios_public = useAxiosPublic();
+
       // initial_values
       const initial_values = {
             name: "",
@@ -29,8 +37,36 @@ const Add_item_form = () => {
             // validation schema
             validationSchema: add_item_schema,
 
-            onSubmit: (values, { resetForm }) => {
-                  console.log(values);
+            onSubmit: async (values, { resetForm }) => {
+                  try {
+                        // 1. image data in object
+                        const image_data = { image: values.image };
+
+                        // 2. posting image in image hosting server
+                        const res = await axios_public.post(
+                              image_hosting_api,
+                              image_data,
+                              {
+                                    headers: {
+                                          "Content-Type": "multipart/form-data",
+                                    },
+                              },
+                        );
+                        console.log(res.data);
+
+                        // 3. sending item data in database with image url
+                        if (res.data.success) {
+                        }
+                  } catch (error) {
+                        const error_message = error.code;
+                        Swal.fire({
+                              title: "Error",
+                              text: `Something went wrong: ${error_message}`,
+                              icon: "error",
+                              confirmButtonColor: "rgb(251, 170, 0)",
+                        });
+                  }
+
                   resetForm();
                   if (image_ref.current) {
                         image_ref.current.value = "";
@@ -82,6 +118,11 @@ const Add_item_form = () => {
                                     <option value="salad">Salad</option>
                                     <option value="soups">Soups</option>
                               </select>
+                              {errors.category && touched.category ? (
+                                    <span className="text-red-500">
+                                          {errors.category}
+                                    </span>
+                              ) : null}
                         </fieldset>
                         {/* price field */}
                         <fieldset className="fieldset">
@@ -96,6 +137,11 @@ const Add_item_form = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                               />
+                              {errors.price && touched.price ? (
+                                    <span className="text-red-500">
+                                          {errors.price}
+                                    </span>
+                              ) : null}
                         </fieldset>
                   </fieldset>
                   {/* details field */}
@@ -111,6 +157,11 @@ const Add_item_form = () => {
                               onChange={handleChange}
                               onBlur={handleBlur}
                         ></textarea>
+                        {errors.details && touched.details ? (
+                              <span className="text-red-500">
+                                    {errors.details}
+                              </span>
+                        ) : null}
                   </fieldset>
                   {/* item image field */}
                   <fieldset className="fieldset">
