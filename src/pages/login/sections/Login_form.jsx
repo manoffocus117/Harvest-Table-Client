@@ -61,7 +61,7 @@ const Login_form = () => {
                               values.email,
                               values.password,
                         );
-                        const user_name = result.user.displayName;
+                        const user_name = result.user?.displayName;
                         await Swal.fire({
                               title: "Success!",
                               text: `Welcome back ${user_name}`,

@@ -14,6 +14,7 @@ const Sign_in_with = () => {
       const handle_google_sign_in = async () => {
             try {
                   const result = await sign_in_with_google();
+                  const user_name = result.user?.displayName;
 
                   const user_info = {
                         name: result.user?.displayName,
@@ -23,17 +24,17 @@ const Sign_in_with = () => {
                   await axios_public.post("/users", user_info);
                   Swal.fire({
                         title: "Success!",
-                        text: "Login success",
+                        text: `Welcome back, ${user_name}`,
                         icon: "success",
                         confirmButtonColor: "rgb(251, 170, 0)",
                   });
 
                   navigate("/");
             } catch (error) {
-                  console.error("Google sign-in error:", error);
+                  const error_message = error.code.replace("/auth", "");
                   Swal.fire({
                         title: "Error",
-                        text: `Something went wrong : ${error}`,
+                        text: `Something went wrong : ${error_message}`,
                         icon: "error",
                         confirmButtonColor: "rgb(251, 170, 0)",
                   });
