@@ -142,7 +142,7 @@ const Login_form = () => {
                                     />
                                     {errors.captcha && touched.captcha ? (
                                           <span className="text-red-500">
-                                                {errors.email}
+                                                {errors.captcha}
                                           </span>
                                     ) : null}
                               </fieldset>

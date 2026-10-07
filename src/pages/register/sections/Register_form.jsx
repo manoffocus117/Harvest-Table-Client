@@ -9,16 +9,12 @@ import {
 import Auth_context from "../../../context/Auth_context";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useFormik } from "formik";
+import registration_schema from "./../../../schemas/registration_schema";
 
 const Register_form = () => {
       // axios public instance
       const axios_public = useAxiosPublic();
-
-      // state for submit button disabled
-      const [disabled, set_disabled] = useState(true);
-
-      // ref for captcha
-      const captcha_ref = useRef(null);
 
       // auth context
       const { create_user, update_user_profile } = useContext(Auth_context);
@@ -31,86 +27,89 @@ const Register_form = () => {
             loadCaptchaEnginge(8);
       }, []);
 
+      // form initial values
+      const initial_values = {
+            name: "",
+            photo_url: "",
+            email: "",
+            password: "",
+            confirm_password: "",
+            captcha: "",
+      };
+
       // handler for register form submit
-      const handle_register_submit = (event) => {
-            event.preventDefault();
-
-            const form = event.target;
-            const name = form.name.value;
-            const photo_url = form.photo_url.value;
-            const email = form.email.value;
-            const password = form.password.value;
-            const captcha = captcha_ref.current.value;
-
-            // sign up user
-            create_user(email, password)
-                  .then((result) => {
-                        const user = result.user;
-                        update_user_profile(name, photo_url)
-                              .then(() => {
-                                    // create a new user entry in the database
-                                    const user_info = {
-                                          name: name,
-                                          email: email,
-                                    };
-                                    axios_public
-                                          .post("/users", user_info)
-                                          .then((res) => {
-                                                console.log(
-                                                      "user added to the database",
-                                                      res.data,
-                                                );
-                                                if (res.data.insertedId) {
-                                                      Swal.fire({
-                                                            title: "Success!",
-                                                            text: "Registration success",
-                                                            icon: "success",
-                                                            confirmButtonColor:
-                                                                  "rgb(251, 170, 0)",
-                                                      });
-                                                      event.target.reset();
-                                                      navigate("/");
-                                                }
-                                          });
-                              })
-                              .catch((error) => {
-                                    Swal.fire({
-                                          title: "Error!",
-                                          text: `Something went wrong : ${error}`,
-                                          icon: "error",
-                                          confirmButtonColor:
-                                                "rgb(251, 170, 0)",
-                                    });
-                              });
-                  })
-                  .catch((error) => {
+      const {
+            values,
+            errors,
+            touched,
+            handleBlur,
+            handleChange,
+            handleSubmit,
+      } = useFormik({
+            initialValues: initial_values,
+            // validation
+            validationSchema: registration_schema,
+            // submit
+            onSubmit: async (values, { resetForm }) => {
+                  const { name, photo_url, email, password } = values;
+                  // captcha validation
+                  if (!validateCaptcha(values.captcha)) {
                         Swal.fire({
-                              title: "Error",
-                              text: `Something went wrong: ${error}`,
+                              title: "Error!",
+                              text: "Invalid captcha",
                               icon: "error",
                               confirmButtonColor: "rgb(251, 170, 0)",
                         });
-                  });
-      };
+                        resetForm();
+                        return;
+                  }
+                  try {
+                        // 1. create user in firebase
+                        const result = await create_user(email, password);
+                        const user_name = result.user.displayName;
 
-      // verify captcha
-      const handle_verify_captcha = () => {
-            const captcha_value = captcha_ref.current.value;
-            if (validateCaptcha(captcha_value)) {
-                  set_disabled(false);
-            } else {
-                  set_disabled(true);
-                  alert("captcha is not correct");
-            }
-      };
+                        // 2. update profile in firebase
+                        await update_user_profile(name, photo_url);
+
+                        // 3. save user data in database
+                        const user_info = {
+                              name: name,
+                              email: email,
+                        };
+                        const res = await axios_public.post(
+                              "/users",
+                              user_info,
+                        );
+
+                        // 4. show success message
+                        if (res.data.insertedId) {
+                              await Swal.fire({
+                                    title: "Success!",
+                                    text: "Registration success",
+                                    icon: "success",
+                                    confirmButtonColor: "rgb(251, 170, 0)",
+                              });
+                              // 5. reset form
+                              resetForm();
+                              // 6. navigate to hame page
+                              navigate("/");
+                        }
+                  } catch (error) {
+                        const error_message = error.code.replace("auth/", "");
+                        Swal.fire({
+                              title: "Error",
+                              text: `Something went wrong: ${error_message}`,
+                              icon: "error",
+                              confirmButtonColor: "rgb(251, 170, 0)",
+                        });
+                  }
+            },
+      });
 
       return (
             <div className="w-full md:w-6/12 bg-white p-5 md:p-10 md:mx-30 md:my-20 rounded-xl">
                   <h1 className="text-4xl text-center mb-10">Register</h1>
-                  <form
-                        onSubmit={handle_register_submit}
-                        className="fieldset gap-5"
-                  >
+                  <form onSubmit={handleSubmit} className="fieldset gap-5">
                         {/* name field */}
                         <fieldset className="fieldset">
                               <label htmlFor="name">Name</label>
@@ -120,32 +119,34 @@ const Register_form = () => {
                                     id="name"
                                     className="input outline-none w-full validator"
                                     placeholder="Enter your Name"
-                                    pattern="[A-Za-z_ ]*"
-                                    minLength="3"
-                                    maxLength="30"
-                                    required
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.name}
                               />
-                              <p className="validator-hint hidden">
-                                    Must be 3 to 30 characters, including
-                                    <br />
-                                    Capital and small letters
-                              </p>
+                              {errors.name && touched.name ? (
+                                    <span className="text-red-500">
+                                          {errors.name}
+                                    </span>
+                              ) : null}
                         </fieldset>
                         {/* photo url field */}
                         <fieldset className="fieldset">
-                              <label htmlFor="photo-url">Photo URL</label>
+                              <label htmlFor="photo_url">Photo URL</label>
                               <input
                                     name="photo_url"
                                     type="url"
-                                    id="photo-url"
+                                    id="photo_url"
                                     className="input outline-none w-full validator"
                                     placeholder="https://"
-                                    defaultValue="https://"
-                                    required
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.photo_url}
                               />
-                              <span className="validator-hint hidden">
-                                    Must be be a valid URL
-                              </span>
+                              {errors.photo_url && touched.photo_url ? (
+                                    <span className="text-red-500">
+                                          {errors.photo_url}
+                                    </span>
+                              ) : null}
                         </fieldset>
                         {/* email field */}
                         <fieldset className="fieldset">
@@ -156,11 +157,15 @@ const Register_form = () => {
                                     id="email"
                                     className="input outline-none w-full validator"
                                     placeholder=" Enter your Email"
-                                    required
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.email}
                               />
-                              <span className="validator-hint hidden">
-                                    Enter valid email address
-                              </span>
+                              {errors.email && touched.email ? (
+                                    <span className="text-red-500">
+                                          {errors.email}
+                                    </span>
+                              ) : null}
                         </fieldset>
                         {/* password field */}
                         <fieldset className="fieldset">
@@ -171,52 +176,63 @@ const Register_form = () => {
                                     id="password"
                                     className="input outline-none w-full validator"
                                     placeholder="Enter your Password"
-                                    required
-                                    minLength="8"
-                                    maxLength="32"
-                                    pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.password}
                               />
-                              <p className="validator-hint hidden">
-                                    Must be more than 8 characters &
-                                    <br />
-                                    less than 32 characters, including
-                                    <br />
-                                    At least one uppercase letter
-                                    <br />
-                                    At least one lowercase letter
-                                    <br />
-                                    At least one number
-                                    <br />
-                                    At least one special character
-                              </p>
+                              {errors.password && touched.password ? (
+                                    <span className="text-red-500">
+                                          {errors.password}
+                                    </span>
+                              ) : null}
                         </fieldset>
-                        {/* recaptcha field */}
-                        <fieldset className="fieldset space-y-3 border border-gray-300 rounded p-3">
-                              <legend className="fieldset-legend">
-                                    Recaptcha
-                              </legend>
-                              <LoadCanvasTemplate />
-                              <fieldset className="join">
+                        {/* confirm password field */}
+                        <fieldset className="fieldset">
+                              <label htmlFor="confirm_password">
+                                    Confirm Password
+                              </label>
+                              <input
+                                    name="confirm_password"
+                                    type="password"
+                                    id="confirm_password"
+                                    className="input outline-none w-full validator"
+                                    placeholder="Confirm Password"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.confirm_password}
+                              />
+                              {errors.confirm_password &&
+                              touched.confirm_password ? (
+                                    <span className="text-red-500">
+                                          {errors.confirm_password}
+                                    </span>
+                              ) : null}
+                        </fieldset>
+                        {/* captcha field */}
+                        <fieldset className="fieldset">
+                              <label htmlFor="enter-captcha">Recaptcha</label>
+                              <fieldset className="fieldset border border-gray-300 rounded p-3 space-y-3">
+                                    <LoadCanvasTemplate />
                                     <input
+                                          name="captcha"
                                           type="enter-captcha"
                                           id="enter-captcha"
-                                          ref={captcha_ref}
-                                          className="join-item input outline-none w-full"
+                                          className="input outline-none w-full"
                                           placeholder="Enter the Captcha above"
+                                          onChange={handleChange}
+                                          onBlur={handleBlur}
+                                          value={values.captcha}
                                     />
-                                    {/* verify captcha button */}
-                                    <input
-                                          type="button"
-                                          value={"Verify"}
-                                          onClick={handle_verify_captcha}
-                                          className="join-item btn btn-primary text-white shadow-none hover:bg-transparent hover:text-black hover:border-primary"
-                                    />
+                                    {errors.captcha && touched.captcha ? (
+                                          <span className="text-red-500">
+                                                {errors.captcha}
+                                          </span>
+                                    ) : null}
                               </fieldset>
                         </fieldset>
                         {/* submit button */}
                         <button
                               type="submit"
-                              disabled={disabled}
                               className="btn btn-primary text-white shadow-none hover:bg-transparent hover:text-black hover:border-primary"
                         >
                               Sign Up
