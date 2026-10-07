@@ -27,7 +27,7 @@ const Add_item_form = () => {
             initialValues: initial_values,
 
             // validation schema
-            // validationSchema: add_item_schema,
+            validationSchema: add_item_schema,
 
             onSubmit: (values, { resetForm }) => {
                   console.log(values);
