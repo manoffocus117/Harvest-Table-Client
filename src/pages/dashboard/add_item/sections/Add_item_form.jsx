@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import { useFormik } from "formik";
 import add_item_schema from "../../../../schemas/add_item_schema";
 import useAxiosPublic from "./../../../../hooks/useAxiosPublic";
+import useAxiosSecure from "./../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -12,14 +14,16 @@ const Add_item_form = () => {
 
       // axios public
       const axios_public = useAxiosPublic();
+      // axios secure
+      const axios_secure = useAxiosSecure();
 
       // initial_values
       const initial_values = {
             name: "",
+            recipe: "",
+            image: null,
             category: "",
             price: "",
-            details: "",
-            image: null,
       };
       // form
       const {
@@ -38,6 +42,7 @@ const Add_item_form = () => {
             validationSchema: add_item_schema,
 
             onSubmit: async (values, { resetForm }) => {
+                  console.log(values);
                   try {
                         // 1. image data in object
                         const image_data = { image: values.image };
@@ -52,10 +57,28 @@ const Add_item_form = () => {
                                     },
                               },
                         );
-                        console.log(res.data);
+                        console.log("with image url", res.data);
 
                         // 3. sending item data in database with image url
                         if (res.data.success) {
+                              // now send the menu item data to the database / server with the image url
+                              const menu_item = {
+                                    name: values.name,
+                                    recipe: values.recipe,
+                                    image: res.data.display_url,
+                                    category: values.category,
+                                    price: parseFloat(values.price),
+                              };
+
+                              //
+                              const menu_res = await axios_secure.post(
+                                    "/menu",
+                                    menu_item,
+                              );
+                              console.log(menu_res.data);
+                              if (menu_res.data.insertedId) {
+                                    // show success message
+                              }
                         }
                   } catch (error) {
                         const error_message = error.code;
@@ -144,22 +167,22 @@ const Add_item_form = () => {
                               ) : null}
                         </fieldset>
                   </fieldset>
-                  {/* details field */}
+                  {/* recipe field */}
                   <fieldset className="fieldset">
-                        <label htmlFor="details">Recipe Details*</label>
+                        <label htmlFor="recipe">Recipe recipe*</label>
                         <textarea
-                              name="details"
-                              id="details"
+                              name="recipe"
+                              id="recipe"
                               className="textarea w-full outline-none"
                               rows={10}
-                              placeholder="Details"
-                              value={values.details}
+                              placeholder="recipe"
+                              value={values.recipe}
                               onChange={handleChange}
                               onBlur={handleBlur}
                         ></textarea>
-                        {errors.details && touched.details ? (
+                        {errors.recipe && touched.recipe ? (
                               <span className="text-red-500">
-                                    {errors.details}
+                                    {errors.recipe}
                               </span>
                         ) : null}
                   </fieldset>
