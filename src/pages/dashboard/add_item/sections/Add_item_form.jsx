@@ -65,7 +65,7 @@ const Add_item_form = () => {
                               const menu_item = {
                                     name: values.name,
                                     recipe: values.recipe,
-                                    image: res.data.display_url,
+                                    image: res.data.data.display_url,
                                     category: values.category,
                                     price: parseFloat(values.price),
                               };
@@ -78,6 +78,23 @@ const Add_item_form = () => {
                               console.log(menu_res.data);
                               if (menu_res.data.insertedId) {
                                     // show success message
+                                    Swal.fire({
+                                          title: "Success",
+                                          text: `${menu_res.data.name} added successfully`,
+                                          icon: "success",
+                                          confirmButtonColor:
+                                                "rgb(251, 170, 0)",
+                                          timer: 2000,
+                                    });
+                              } else {
+                                    Swal.fire({
+                                          title: "Error",
+                                          text: `Something went wrong:`,
+                                          icon: "error",
+                                          confirmButtonColor:
+                                                "rgb(251, 170, 0)",
+                                          timer: 2000,
+                                    });
                               }
                         }
                   } catch (error) {
@@ -139,7 +156,7 @@ const Add_item_form = () => {
                                     <option value="desserts">Desserts</option>
                                     <option value="pizza">Pizza</option>
                                     <option value="salad">Salad</option>
-                                    <option value="soups">Soups</option>
+                                    <option value="soup">Soup</option>
                               </select>
                               {errors.category && touched.category ? (
                                     <span className="text-red-500">
