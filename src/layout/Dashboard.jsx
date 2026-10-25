@@ -124,7 +124,7 @@ const Dashboard = () => {
                   <Scroll_to_top />
                   <Header />
                   <Helmet>
-                        <title>Harvest Table | User Dashboard</title>
+                        <title>Harvest Table | Dashboard</title>
                   </Helmet>
                   <section className="grid grid-cols-1 md:grid-cols-8 md:grid-rows-1 md:h-150">
                         {/* dashboard sidebar */}

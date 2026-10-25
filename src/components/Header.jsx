@@ -143,7 +143,7 @@ const Header = () => {
                                                                   <div className="card-actions">
                                                                         <Link
                                                                               to={
-                                                                                    "/user-dashboard/my-cart"
+                                                                                    "/dashboard/my-cart"
                                                                               }
                                                                               className="btn btn-primary text-white btn-block"
                                                                         >
