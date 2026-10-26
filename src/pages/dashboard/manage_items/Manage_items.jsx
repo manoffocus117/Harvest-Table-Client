@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Title from "../../../components/Title";
 import useMenu from "../../../hooks/useMenu";
 import { RiDeleteBin2Line, RiEditLine } from "@remixicon/react";
 
 const Manage_items = () => {
       const [menu] = useMenu();
+      const [category, set_category] = useState("all");
+
+      const filtered_menu =
+            category === "all"
+                  ? menu
+                  : menu.filter((item) => item.category === category);
 
       const handle_update_menu_item = () => {};
       const handle_delete_menu_item = () => {};
@@ -14,19 +20,20 @@ const Manage_items = () => {
                   <div className="bg-white p-4 md:p-10 rounded-2xl">
                         <div className="flex justify-between items-center">
                               <h2 className="text-3xl">
-                                    Total Items: {menu.length}
+                                    Total Items: {filtered_menu.length}
                               </h2>
                               <div className="flex flex-col items-end gap-2">
                                     <legend className="text-sm">Sort by</legend>
                                     <select
                                           name="category"
-                                          className="select select-sm outline-none"
+                                          value={category}
+                                          onChange={(e) =>
+                                                set_category(e.target.value)
+                                          }
+                                          className="w-37 select select-sm outline-none"
                                     >
-                                          <option value="" disabled>
-                                                Select a Category
-                                          </option>
-
-                                          <option value="desserts">
+                                          <option value="all">All</option>
+                                          <option value="dessert">
                                                 Desserts
                                           </option>
                                           <option value="pizza">Pizza</option>
@@ -48,7 +55,7 @@ const Manage_items = () => {
                                           </tr>
                                     </thead>
                                     <tbody>
-                                          {menu.map((item, index) => (
+                                          {filtered_menu.map((item, index) => (
                                                 <tr key={item._id}>
                                                       <th>{index + 1}</th>
                                                       <td>
