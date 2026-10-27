@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import Title from "../../../components/Title";
 import useMenu from "../../../hooks/useMenu";
 import { RiDeleteBin2Line, RiEditLine } from "@remixicon/react";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Manage_items = () => {
-      const [menu] = useMenu();
+      const [menu, refetch] = useMenu();
       const [category, set_category] = useState("all");
+
+      const axios_secure = useAxiosSecure();
 
       const filtered_menu =
             category === "all"
@@ -13,7 +17,35 @@ const Manage_items = () => {
                   : menu.filter((item) => item.category === category);
 
       const handle_update_menu_item = () => {};
-      const handle_delete_menu_item = () => {};
+      const handle_delete_menu_item = (item) => {
+            Swal.fire({
+                  title: "Are you sure?",
+                  text: "You won't be able to revert this!",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "rgb(251, 170, 0)",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Yes, delete it!",
+            }).then(async (result) => {
+                  if (result.isConfirmed) {
+                        const res = await axios_secure.delete(
+                              `/menu/${item._id}`,
+                        );
+
+                        if (res.data.deletedCount > 0) {
+                              Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Your item has been deleted.",
+                                    icon: "success",
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                              });
+                              // refetching data for the ui
+                              refetch();
+                        }
+                  }
+            });
+      };
       return (
             <>
                   <Title sub_title={"Hurry Up!"} title={"Manage all items"} />
@@ -93,7 +125,7 @@ const Manage_items = () => {
                                                                   data-tip="Delete Item"
                                                                   onClick={() =>
                                                                         handle_delete_menu_item(
-                                                                              item._id,
+                                                                              item,
                                                                         )
                                                                   }
                                                                   className="btn bg-red-600 px-2 text-white tooltip"

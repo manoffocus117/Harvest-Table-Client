@@ -52,9 +52,8 @@ const All_users = () => {
                                                 title: "Deleted!",
                                                 text: "Your item has been deleted.",
                                                 icon: "success",
-                                                confirmButtonColor:
-                                                      "rgb(251, 170, 0)",
-                                                timer: 3000,
+                                                showConfirmButton: false,
+                                                timer: 1500,
                                           });
                                           refetch();
                                     }
