@@ -50,7 +50,8 @@ const Login_form = () => {
                               title: "Error",
                               text: "Invalid CAPTCHA",
                               icon: "error",
-                              confirmButtonColor: "rgb(251, 170, 0)",
+                              showConfirmButton: false,
+                              timer: 2000,
                         });
                         resetForm();
                         return;
@@ -63,10 +64,11 @@ const Login_form = () => {
                         );
                         const user_name = result.user?.displayName;
                         await Swal.fire({
+                              icon: "success",
                               title: "Success!",
                               text: `Welcome back ${user_name}`,
-                              icon: "success",
-                              confirmButtonColor: "rgb(251, 170, 0)",
+                              showConfirmButton: false,
+                              timer: 2000,
                         });
                         resetForm();
                         navigate(from, { replace: true });
@@ -76,7 +78,8 @@ const Login_form = () => {
                               title: "Error",
                               text: `Something went wrong: ${error_message}`,
                               icon: "error",
-                              confirmButtonColor: "rgb(251, 170, 0)",
+                              showConfirmButton: false,
+                              timer: 2000,
                         });
                         resetForm();
                   }

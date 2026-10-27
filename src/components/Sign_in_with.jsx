@@ -26,7 +26,8 @@ const Sign_in_with = () => {
                         title: "Success!",
                         text: `Welcome back, ${user_name}`,
                         icon: "success",
-                        confirmButtonColor: "rgb(251, 170, 0)",
+                        showConfirmButton: false,
+                        timer: 1500,
                   });
 
                   navigate("/");
@@ -36,7 +37,8 @@ const Sign_in_with = () => {
                         title: "Error",
                         text: `Something went wrong : ${error_message}`,
                         icon: "error",
-                        confirmButtonColor: "rgb(251, 170, 0)",
+                        showConfirmButton: false,
+                        timer: 1500,
                   });
             }
       };

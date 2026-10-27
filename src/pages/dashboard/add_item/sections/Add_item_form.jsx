@@ -82,8 +82,7 @@ const Add_item_form = () => {
                                           title: "Success",
                                           text: `${menu_res.data.name} added successfully`,
                                           icon: "success",
-                                          confirmButtonColor:
-                                                "rgb(251, 170, 0)",
+                                          showConfirmButton: false,
                                           timer: 2000,
                                     });
                               } else {
@@ -91,8 +90,7 @@ const Add_item_form = () => {
                                           title: "Error",
                                           text: `Something went wrong:`,
                                           icon: "error",
-                                          confirmButtonColor:
-                                                "rgb(251, 170, 0)",
+                                          showConfirmButton: false,
                                           timer: 2000,
                                     });
                               }
@@ -103,7 +101,8 @@ const Add_item_form = () => {
                               title: "Error",
                               text: `Something went wrong: ${error_message}`,
                               icon: "error",
-                              confirmButtonColor: "rgb(251, 170, 0)",
+                              showConfirmButton: false,
+                              timer: 2000,
                         });
                   }
 

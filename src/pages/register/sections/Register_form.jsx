@@ -58,7 +58,8 @@ const Register_form = () => {
                               title: "Error!",
                               text: "Invalid captcha",
                               icon: "error",
-                              confirmButtonColor: "rgb(251, 170, 0)",
+                              showConfirmButton: false,
+                              timer: 2000,
                         });
                         resetForm();
                         return;
@@ -87,7 +88,8 @@ const Register_form = () => {
                                     title: "Success!",
                                     text: "Registration success",
                                     icon: "success",
-                                    confirmButtonColor: "rgb(251, 170, 0)",
+                                    showConfirmButton: false,
+                                    timer: 2000,
                               });
                               // 5. reset form
                               resetForm();
@@ -100,7 +102,8 @@ const Register_form = () => {
                               title: "Error",
                               text: `Something went wrong: ${error_message}`,
                               icon: "error",
-                              confirmButtonColor: "rgb(251, 170, 0)",
+                              showConfirmButton: false,
+                              timer: 2000,
                         });
                   }
             },

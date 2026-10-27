@@ -23,9 +23,8 @@ const All_users = () => {
                               icon: "success",
                               title: "success",
                               text: `${user.name} is an admin now`,
-                              showConfirmButton: true,
-                              confirmButtonColor: "rgb(251, 170, 0)",
-                              timer: 1500,
+                              showConfirmButton: false,
+                              timer: 2000,
                         });
                         refetch();
                   }
@@ -53,7 +52,7 @@ const All_users = () => {
                                                 text: "Your item has been deleted.",
                                                 icon: "success",
                                                 showConfirmButton: false,
-                                                timer: 1500,
+                                                timer: 2000,
                                           });
                                           refetch();
                                     }

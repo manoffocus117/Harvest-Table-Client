@@ -31,9 +31,8 @@ const My_cart = () => {
                                           title: "Deleted!",
                                           text: "Your item has been deleted.",
                                           icon: "success",
-                                          confirmButtonColor:
-                                                "rgb(251, 170, 0)",
-                                          timer: 3000,
+                                          showConfirmButton: false,
+                                          timer: 2000,
                                     });
                                     refetch();
                               }

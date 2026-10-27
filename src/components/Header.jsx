@@ -43,7 +43,8 @@ const Header = () => {
                               title: "Success!",
                               text: "Logout success",
                               icon: "success",
-                              confirmButtonColor: "rgb(251, 170, 0)",
+                              showConfirmButton: false,
+                              timer: 1500,
                         });
                         navigate("/");
                   })

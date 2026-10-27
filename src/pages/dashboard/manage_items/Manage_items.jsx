@@ -38,7 +38,7 @@ const Manage_items = () => {
                                     text: "Your item has been deleted.",
                                     icon: "success",
                                     showConfirmButton: false,
-                                    timer: 1500,
+                                    timer: 2000,
                               });
                               // refetching data for the ui
                               refetch();

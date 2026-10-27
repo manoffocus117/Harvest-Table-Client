@@ -30,8 +30,8 @@ const Product_card = ({ item }) => {
                                     icon: "success",
                                     title: "Success",
                                     text: `${name} has been added to the cart`,
-                                    confirmButtonColor: "rgb(251, 170, 0)",
-                                    timer: 3000,
+                                    showConfirmButton: false
+                                    timer: 2000,
                               });
                               // refetch cart to update the cart item count
                               refetch();
