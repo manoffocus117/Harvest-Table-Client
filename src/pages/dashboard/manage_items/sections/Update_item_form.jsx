@@ -4,6 +4,7 @@ import update_item_schema from "../../../../schemas/update_item_schema";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { Swal } from "sweetalert2";
+import Title from "../../../../components/Title";
 
 const Update_item_form = () => {
       const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -110,125 +111,149 @@ const Update_item_form = () => {
             },
       });
       return (
-            <form onSubmit={handleSubmit} className="fieldset gap-5">
-                  {/* name field */}
-                  <fieldset className="fieldset">
-                        <label htmlFor="name">Recipe Name*</label>
-                        <input
-                              name="name"
-                              type="text"
-                              id="name"
-                              className="input outline-none w-full"
-                              placeholder="Recipe Name"
-                              value={values.name}
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                        />
-                        {errors.name && touched.name ? (
-                              <span className="text-red-500">
-                                    {errors.name}
-                              </span>
-                        ) : null}
-                  </fieldset>
-                  {/* category & price field */}
-                  <fieldset className="fieldset grid-cols-1 md:grid-cols-2">
-                        {/* category field */}
-                        <fieldset className="fieldset">
-                              <label htmlFor="category">Category*</label>
-                              <select
-                                    name="category"
-                                    id="category"
-                                    className="select outline-none"
-                                    value={values.category}
-                                    onChange={handleChange}
-                                    onBlur={() =>
-                                          setFieldTouched("category", true)
-                                    }
-                              >
-                                    <option value="" disabled>
-                                          Select a Category
-                                    </option>
+            <>
+                  <Title sub_title={"What's new"} title={"Update Item"} />
+                  <div className="bg-white p-4 md:p-10 rounded-2xl">
+                        <form
+                              onSubmit={handleSubmit}
+                              className="fieldset gap-5"
+                        >
+                              {/* name field */}
+                              <fieldset className="fieldset">
+                                    <label htmlFor="name">Recipe Name*</label>
+                                    <input
+                                          name="name"
+                                          type="text"
+                                          id="name"
+                                          className="input outline-none w-full"
+                                          placeholder="Recipe Name"
+                                          value={values.name}
+                                          onChange={handleChange}
+                                          onBlur={handleBlur}
+                                    />
+                                    {errors.name && touched.name ? (
+                                          <span className="text-red-500">
+                                                {errors.name}
+                                          </span>
+                                    ) : null}
+                              </fieldset>
+                              {/* category & price field */}
+                              <fieldset className="fieldset grid-cols-1 md:grid-cols-2">
+                                    {/* category field */}
+                                    <fieldset className="fieldset">
+                                          <label htmlFor="category">
+                                                Category*
+                                          </label>
+                                          <select
+                                                name="category"
+                                                id="category"
+                                                className="select outline-none"
+                                                value={values.category}
+                                                onChange={handleChange}
+                                                onBlur={() =>
+                                                      setFieldTouched(
+                                                            "category",
+                                                            true,
+                                                      )
+                                                }
+                                          >
+                                                <option value="" disabled>
+                                                      Select a Category
+                                                </option>
 
-                                    <option value="desserts">Desserts</option>
-                                    <option value="pizza">Pizza</option>
-                                    <option value="salad">Salad</option>
-                                    <option value="soup">Soup</option>
-                              </select>
-                              {errors.category && touched.category ? (
-                                    <span className="text-red-500">
-                                          {errors.category}
-                                    </span>
-                              ) : null}
-                        </fieldset>
-                        {/* price field */}
-                        <fieldset className="fieldset">
-                              <label htmlFor="price">Price*</label>
-                              <input
-                                    name="price"
-                                    type="number"
-                                    id="price"
-                                    className="input outline-none w-full"
-                                    placeholder="Price"
-                                    value={values.price}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                              />
-                              {errors.price && touched.price ? (
-                                    <span className="text-red-500">
-                                          {errors.price}
-                                    </span>
-                              ) : null}
-                        </fieldset>
-                  </fieldset>
-                  {/* recipe field */}
-                  <fieldset className="fieldset">
-                        <label htmlFor="recipe">Recipe recipe*</label>
-                        <textarea
-                              name="recipe"
-                              id="recipe"
-                              className="textarea w-full outline-none"
-                              rows={10}
-                              placeholder="recipe"
-                              value={values.recipe}
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                        ></textarea>
-                        {errors.recipe && touched.recipe ? (
-                              <span className="text-red-500">
-                                    {errors.recipe}
-                              </span>
-                        ) : null}
-                  </fieldset>
-                  {/* item image field */}
-                  <fieldset className="fieldset">
-                        <input
-                              name="image"
-                              type="file"
-                              ref={image_ref}
-                              onChange={(event) => {
-                                    setFieldValue(
-                                          "image",
-                                          event.currentTarget.files?.[0] ??
-                                                null,
-                                    );
-                              }}
-                              onBlur={handleBlur}
-                              className="file-input file-input-ghost"
-                        />
-                        {errors.image && touched.image ? (
-                              <span className="text-red-500">
-                                    {errors.image}
-                              </span>
-                        ) : null}
-                  </fieldset>
-                  {/* submit button */}
-                  <button
-                        type="submit"
-                        className="w-40 btn btn-primary text-white shadow-none hover:bg-transparent hover:text-black hover:border-primary"
-                  >
-                        Update Item
-                  </button>
-            </form>
+                                                <option value="desserts">
+                                                      Desserts
+                                                </option>
+                                                <option value="pizza">
+                                                      Pizza
+                                                </option>
+                                                <option value="salad">
+                                                      Salad
+                                                </option>
+                                                <option value="soup">
+                                                      Soup
+                                                </option>
+                                          </select>
+                                          {errors.category &&
+                                          touched.category ? (
+                                                <span className="text-red-500">
+                                                      {errors.category}
+                                                </span>
+                                          ) : null}
+                                    </fieldset>
+                                    {/* price field */}
+                                    <fieldset className="fieldset">
+                                          <label htmlFor="price">Price*</label>
+                                          <input
+                                                name="price"
+                                                type="number"
+                                                id="price"
+                                                className="input outline-none w-full"
+                                                placeholder="Price"
+                                                value={values.price}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                          />
+                                          {errors.price && touched.price ? (
+                                                <span className="text-red-500">
+                                                      {errors.price}
+                                                </span>
+                                          ) : null}
+                                    </fieldset>
+                              </fieldset>
+                              {/* recipe field */}
+                              <fieldset className="fieldset">
+                                    <label htmlFor="recipe">
+                                          Recipe recipe*
+                                    </label>
+                                    <textarea
+                                          name="recipe"
+                                          id="recipe"
+                                          className="textarea w-full outline-none"
+                                          rows={10}
+                                          placeholder="recipe"
+                                          value={values.recipe}
+                                          onChange={handleChange}
+                                          onBlur={handleBlur}
+                                    ></textarea>
+                                    {errors.recipe && touched.recipe ? (
+                                          <span className="text-red-500">
+                                                {errors.recipe}
+                                          </span>
+                                    ) : null}
+                              </fieldset>
+                              {/* item image field */}
+                              <fieldset className="fieldset">
+                                    <input
+                                          name="image"
+                                          type="file"
+                                          ref={image_ref}
+                                          onChange={(event) => {
+                                                setFieldValue(
+                                                      "image",
+                                                      event.currentTarget
+                                                            .files?.[0] ?? null,
+                                                );
+                                          }}
+                                          onBlur={handleBlur}
+                                          className="file-input file-input-ghost"
+                                    />
+                                    {errors.image && touched.image ? (
+                                          <span className="text-red-500">
+                                                {errors.image}
+                                          </span>
+                                    ) : null}
+                              </fieldset>
+                              {/* submit button */}
+                              <button
+                                    type="submit"
+                                    className="w-40 btn btn-primary text-white shadow-none hover:bg-transparent hover:text-black hover:border-primary"
+                              >
+                                    Update Item
+                              </button>
+                        </form>
+                  </div>
+            </>
       );
 };
 

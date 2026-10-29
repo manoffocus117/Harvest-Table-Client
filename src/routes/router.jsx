@@ -27,6 +27,7 @@ import Manage_bookings from "../pages/dashboard/Manage_bookings";
 import All_users from "../pages/dashboard/All_users";
 import Admin_route from "./Admin_route";
 import Dashboard_index from "../components/Dashboard_index";
+import Update_item_form from "./../pages/dashboard/manage_items/sections/Update_item_form";
 
 const router = createBrowserRouter([
       {
@@ -144,6 +145,12 @@ const router = createBrowserRouter([
                                     <Manage_items />
                               </Admin_route>
                         ),
+                        children: [
+                              {
+                                    path: "update-item/:id",
+                                    Component: Update_item_form,
+                              },
+                        ],
                   },
                   {
                         path: "manage-bookings",

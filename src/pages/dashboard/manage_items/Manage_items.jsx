@@ -1,14 +1,19 @@
 import React from "react";
-import Title from "../../../components/Title";
-import Manage_item_form from "./sections/Manage_item_form";
+import { Outlet, useLocation } from "react-router";
+import Items_list from "./sections/Items_list";
 
 const Manage_items = () => {
+      const location = useLocation();
+
       return (
             <>
-                  <Title sub_title={"Hurry Up!"} title={"Manage all items"} />
-                  <div className="bg-white p-4 md:p-10 rounded-2xl">
-                        <Manage_item_form />
-                  </div>
+                  {location.pathname.startsWith(
+                        "/dashboard/manage-items/update-item/",
+                  ) ? (
+                        <Outlet />
+                  ) : (
+                        <Items_list />
+                  )}
             </>
       );
 };
