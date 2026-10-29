@@ -44,7 +44,7 @@ const Header = () => {
                               text: "Logout success",
                               icon: "success",
                               showConfirmButton: false,
-                              timer: 1500,
+                              timer: 2000,
                         });
                         navigate("/");
                   })
@@ -53,7 +53,8 @@ const Header = () => {
                               title: "Error!",
                               text: `Something went wrong : ${error}`,
                               icon: "error",
-                              confirmButtonColor: "rgb(251, 170, 0)",
+                              showConfirmButton: false,
+                              timer: 2000,
                         });
                   });
       };

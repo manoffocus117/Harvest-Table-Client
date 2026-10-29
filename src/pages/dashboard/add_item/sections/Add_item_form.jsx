@@ -80,7 +80,7 @@ const Add_item_form = () => {
                                     // show success message
                                     Swal.fire({
                                           title: "Success",
-                                          text: `${menu_res.data.name} added successfully`,
+                                          text: `${values.name} added successfully on the menu.`,
                                           icon: "success",
                                           showConfirmButton: false,
                                           timer: 2000,

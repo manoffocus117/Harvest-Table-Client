@@ -27,7 +27,7 @@ const Sign_in_with = () => {
                         text: `Welcome back, ${user_name}`,
                         icon: "success",
                         showConfirmButton: false,
-                        timer: 1500,
+                        timer: 2000,
                   });
 
                   navigate("/");
@@ -38,7 +38,7 @@ const Sign_in_with = () => {
                         text: `Something went wrong : ${error_message}`,
                         icon: "error",
                         showConfirmButton: false,
-                        timer: 1500,
+                        timer: 2000,
                   });
             }
       };
