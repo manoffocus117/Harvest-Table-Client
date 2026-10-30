@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import update_item_schema from "../../../../schemas/update_item_schema";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import { Swal } from "sweetalert2";
+import Swal from "sweetalert2";
 import Title from "../../../../components/Title";
 import { useLoaderData } from "react-router";
 
@@ -12,7 +12,14 @@ const Update_item_form = () => {
       const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
       // loading single item data using loader
-      const { _id, name, recipe, category, price } = useLoaderData();
+      const {
+            _id,
+            name,
+            recipe,
+            image: existing_image,
+            category,
+            price,
+      } = useLoaderData();
 
       const axios_public = useAxiosPublic();
       const axios_secure = useAxiosSecure();
@@ -44,72 +51,78 @@ const Update_item_form = () => {
             validationSchema: update_item_schema,
 
             onSubmit: async (values, { resetForm }) => {
-                  console.log(values);
                   try {
-                        // 1. image data in object
-                        const image_data = { image: values.image };
+                        let image_url = existing_image;
 
-                        // 2. posting image in image hosting server
-                        const res = await axios_public.post(
-                              image_hosting_api,
-                              image_data,
-                              {
-                                    headers: {
-                                          "Content-Type": "multipart/form-data",
-                                    },
-                              },
+                        // 1. Upload a new image only if one was selected
+                        if (values.image instanceof File) {
+                              const image_data = new FormData();
+                              image_data.append("image", values.image);
+
+                              const image_res = await axios_public.post(
+                                    image_hosting_api,
+                                    image_data,
+                              );
+
+                              console.log("ImgBB response:", image_res.data);
+
+                              if (!image_res.data.success) {
+                                    throw new Error("Image upload failed.");
+                              }
+
+                              image_url = image_res.data.data.display_url;
+                        }
+
+                        // 2. Prepare updated menu item data
+                        const menu_item = {
+                              name: values.name,
+                              recipe: values.recipe,
+                              image: image_url,
+                              category: values.category,
+                              price: parseFloat(values.price),
+                        };
+
+                        // 3. Update the item in your database
+                        const menu_res = await axios_secure.patch(
+                              `/menu/${_id}`,
+                              menu_item,
                         );
 
-                        // 3. sending item data in database with image url
-                        if (res.data.success) {
-                              // now send the menu item data to the database / server with the image url
-                              const menu_item = {
-                                    name: values.name,
-                                    recipe: values.recipe,
-                                    image: res.data.data.display_url,
-                                    category: values.category,
-                                    price: parseFloat(values.price),
-                              };
+                        // 4. Show the appropriate message
+                        if (menu_res.data.modifiedCount > 0) {
+                              await Swal.fire({
+                                    title: "Success",
+                                    text: `${values.name} updated successfully on the menu.`,
+                                    icon: "success",
+                                    showConfirmButton: false,
+                                    timer: 2000,
+                              });
 
-                              //
-                              const menu_res = await axios_secure.patch(
-                                    `/menu/${_id}`,
-                                    menu_item,
-                              );
-                              console.log(menu_res.data);
-                              if (menu_res.data.insertedId) {
-                                    // show success message
-                                    Swal.fire({
-                                          title: "Success",
-                                          text: `${values.name} updated successfully on the menu.`,
-                                          icon: "success",
-                                          showConfirmButton: false,
-                                          timer: 2000,
-                                    });
-                              } else {
-                                    Swal.fire({
-                                          title: "Error",
-                                          text: `Something went wrong:`,
-                                          icon: "error",
-                                          showConfirmButton: false,
-                                          timer: 2000,
-                                    });
-                              }
+                              resetForm();
+                        } else {
+                              await Swal.fire({
+                                    title: "No Changes",
+                                    text: "No changes were made to the menu item.",
+                                    icon: "info",
+                              });
                         }
                   } catch (error) {
-                        const error_message = error.code;
-                        Swal.fire({
-                              title: "Error",
-                              text: `Something went wrong: ${error_message}`,
-                              icon: "error",
-                              showConfirmButton: false,
-                              timer: 2000,
-                        });
-                  }
+                        console.error("Update item error:", error);
 
-                  resetForm();
-                  if (image_ref.current) {
-                        image_ref.current.value = "";
+                        const error_message =
+                              error.response?.data?.message ||
+                              error.message ||
+                              "An unexpected error occurred.";
+
+                        await Swal.fire({
+                              title: "Error",
+                              text: error_message,
+                              icon: "error",
+                        });
+                  } finally {
+                        if (image_ref.current) {
+                              image_ref.current.value = "";
+                        }
                   }
             },
       });
