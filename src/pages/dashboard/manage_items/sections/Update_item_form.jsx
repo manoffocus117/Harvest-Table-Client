@@ -5,10 +5,14 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { Swal } from "sweetalert2";
 import Title from "../../../../components/Title";
+import { useLoaderData } from "react-router";
 
 const Update_item_form = () => {
       const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
       const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
+      // loading single item data using loader
+      const { _id, name, recipe, category, price } = useLoaderData();
 
       const axios_public = useAxiosPublic();
       const axios_secure = useAxiosSecure();
@@ -17,11 +21,11 @@ const Update_item_form = () => {
 
       // initial_values
       const initial_values = {
-            name: "",
-            recipe: "",
-            image: null,
-            category: "",
-            price: "",
+            name: name,
+            recipe: recipe,
+            image: "",
+            category: category,
+            price: price,
       };
 
       const {
@@ -55,7 +59,6 @@ const Update_item_form = () => {
                                     },
                               },
                         );
-                        console.log("with image url", res.data);
 
                         // 3. sending item data in database with image url
                         if (res.data.success) {
@@ -69,8 +72,8 @@ const Update_item_form = () => {
                               };
 
                               //
-                              const menu_res = await axios_secure.post(
-                                    "/menu",
+                              const menu_res = await axios_secure.patch(
+                                    `/menu/${_id}`,
                                     menu_item,
                               );
                               console.log(menu_res.data);
@@ -78,7 +81,7 @@ const Update_item_form = () => {
                                     // show success message
                                     Swal.fire({
                                           title: "Success",
-                                          text: `${values.name} added successfully on the menu.`,
+                                          text: `${values.name} updated successfully on the menu.`,
                                           icon: "success",
                                           showConfirmButton: false,
                                           timer: 2000,
@@ -130,6 +133,7 @@ const Update_item_form = () => {
                                           value={values.name}
                                           onChange={handleChange}
                                           onBlur={handleBlur}
+                                          // defaultValue={name}
                                     />
                                     {errors.name && touched.name ? (
                                           <span className="text-red-500">

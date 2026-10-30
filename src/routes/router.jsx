@@ -28,6 +28,7 @@ import All_users from "../pages/dashboard/All_users";
 import Admin_route from "./Admin_route";
 import Dashboard_index from "../components/Dashboard_index";
 import Update_item_form from "./../pages/dashboard/manage_items/sections/Update_item_form";
+import Loading from "../components/Loading";
 
 const router = createBrowserRouter([
       {
@@ -149,6 +150,11 @@ const router = createBrowserRouter([
                               {
                                     path: "update-item/:id",
                                     Component: Update_item_form,
+                                    loader: ({ params }) =>
+                                          fetch(
+                                                `http://localhost:3000/menu/${params.id}`,
+                                          ),
+                                    hydrateFallbackElement: <Loading />,
                               },
                         ],
                   },
