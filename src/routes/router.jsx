@@ -10,7 +10,7 @@ import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Private_route from "./Private_route";
 import Dashboard from "../layout/Dashboard";
-import My_cart from "../pages/dashboard/My_cart";
+import My_cart from "../pages/dashboard/my-cart/My_cart";
 import User_home from "./../pages/dashboard/User_home";
 import Reservation from "./../pages/dashboard/Reservation";
 import Payment_history from "./../pages/dashboard/Payment_history";
@@ -29,6 +29,7 @@ import Admin_route from "./Admin_route";
 import Dashboard_index from "../components/Dashboard_index";
 import Update_item_form from "./../pages/dashboard/manage_items/sections/Update_item_form";
 import Loading from "../components/Loading";
+import Payment from "../pages/dashboard/my-cart/sections/Payment";
 
 const router = createBrowserRouter([
       {
@@ -113,6 +114,12 @@ const router = createBrowserRouter([
                   {
                         path: "my-cart",
                         Component: My_cart,
+                        children: [
+                              {
+                                    path: "payment",
+                                    Component: Payment,
+                              },
+                        ],
                   },
                   {
                         path: "add-review",

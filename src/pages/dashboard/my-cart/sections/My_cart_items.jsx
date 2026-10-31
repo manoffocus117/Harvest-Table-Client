@@ -1,13 +1,13 @@
 import React from "react";
-import Title from "../../components/Title";
-import useCart from "./../../hooks/useCart";
+import Title from "../../../../components/Title";
+import useCart from "../../../../hooks/useCart";
 import { RiDeleteBin2Line } from "@remixicon/react";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import useTotalPrice from "../../hooks/useTotalPrice";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import useTotalPrice from "../../../../hooks/useTotalPrice";
 import { Link } from "react-router";
 
-const My_cart = () => {
+const My_cart_items = () => {
       const [cart, refetch] = useCart();
       const axios_secure = useAxiosSecure();
 
@@ -39,7 +39,6 @@ const My_cart = () => {
                         });
             });
       };
-
       return (
             <>
                   <Title sub_title={"My cart"} title={"Wanna add more?"} />
@@ -51,9 +50,12 @@ const My_cart = () => {
                               <h1 className="text-3xl">
                                     Total Price: {formatted_price}
                               </h1>
-                              <button className="btn btn-primary text-white">
+                              <Link
+                                    to={"/dashboard/my-cart/payment"}
+                                    className={`btn btn-primary text-white ${!cart.length ? "btn-disabled" : ""}`}
+                              >
                                     Pay Now
-                              </button>
+                              </Link>
                         </div>
                         {/* conditionally render the cart items */}
                         {cart.length > 0 ? (
@@ -127,4 +129,4 @@ const My_cart = () => {
       );
 };
 
-export default My_cart;
+export default My_cart_items;

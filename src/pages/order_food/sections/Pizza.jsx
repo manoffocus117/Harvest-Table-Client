@@ -4,7 +4,7 @@ import Product_card from "../../../components/Product_card";
 import Loading from "../../../components/Loading";
 
 const Pizza = () => {
-      const [menu, loading] = useMenu();
+      const [menu, , loading] = useMenu();
       if (loading) {
             return <Loading />;
       }
