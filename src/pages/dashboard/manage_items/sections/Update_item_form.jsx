@@ -64,8 +64,6 @@ const Update_item_form = () => {
                                     image_data,
                               );
 
-                              console.log("ImgBB response:", image_res.data);
-
                               if (!image_res.data.success) {
                                     throw new Error("Image upload failed.");
                               }

@@ -75,7 +75,7 @@ const Add_item_form = () => {
                                     "/menu",
                                     menu_item,
                               );
-                              console.log(menu_res.data);
+
                               if (menu_res.data.insertedId) {
                                     // show success message
                                     Swal.fire({
@@ -85,30 +85,33 @@ const Add_item_form = () => {
                                           showConfirmButton: false,
                                           timer: 2000,
                                     });
+
+                                    resetForm();
                               } else {
-                                    Swal.fire({
-                                          title: "Error",
-                                          text: `Something went wrong:`,
-                                          icon: "error",
-                                          showConfirmButton: false,
-                                          timer: 2000,
+                                    await Swal.fire({
+                                          title: "No Changes",
+                                          text: "No changes were made to the menu item.",
+                                          icon: "info",
                                     });
                               }
                         }
                   } catch (error) {
-                        const error_message = error.code;
-                        Swal.fire({
-                              title: "Error",
-                              text: `Something went wrong: ${error_message}`,
-                              icon: "error",
-                              showConfirmButton: false,
-                              timer: 2000,
-                        });
-                  }
+                        console.error("Update item error:", error);
 
-                  resetForm();
-                  if (image_ref.current) {
-                        image_ref.current.value = "";
+                        const error_message =
+                              error.response?.data?.message ||
+                              error.message ||
+                              "An unexpected error occurred.";
+
+                        await Swal.fire({
+                              title: "Error",
+                              text: error_message,
+                              icon: "error",
+                        });
+                  } finally {
+                        if (image_ref.current) {
+                              image_ref.current.value = "";
+                        }
                   }
             },
       });
