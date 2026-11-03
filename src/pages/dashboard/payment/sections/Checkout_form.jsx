@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import useCart from "../../../../hooks/useCart";
 import useTotalPrice from "../../../../hooks/useTotalPrice";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const Checkout_form = () => {
+      const [error, set_error] = useState("");
+      const [clientSecret, setClientSecret] = useState("");
+
       const stripe = useStripe();
       const elements = useElements();
 
       const [cart] = useCart();
       const total_price = useTotalPrice();
+
+      const axios_secure = useAxiosSecure();
+
+      useEffect(() => {
+            axios_secure
+                  .post("/payment/create-intent", { price: total_price })
+                  .then((res) => {
+                        console.log(res.data.clientSecret);
+                        setClientSecret(res.data.clientSecret);
+                  });
+      }, [axios_secure, total_price]);
 
       const handle_checkout = async (event) => {
             event.preventDefault();
@@ -27,9 +42,10 @@ const Checkout_form = () => {
                   card,
             });
             if (error) {
-                  console.log("[error]", error);
+                  set_error(error.message);
             } else {
                   console.log("[PaymentMethod]", paymentMethod);
+                  set_error("");
             }
       };
 
@@ -63,12 +79,13 @@ const Checkout_form = () => {
                               className="border p-4 rounded"
                         />
                         <button
-                              disabled={!stripe}
+                              disabled={!stripe || !clientSecret}
                               type="submit"
                               className="btn btn-primary text-white mt-4"
                         >
                               Pay
                         </button>
+                        <span className="text-red-500 flex mt-2">{error}</span>
                   </form>
             </div>
       );
