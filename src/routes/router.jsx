@@ -29,7 +29,7 @@ import Admin_route from "./Admin_route";
 import Dashboard_index from "../components/Dashboard_index";
 import Update_item_form from "./../pages/dashboard/manage_items/sections/Update_item_form";
 import Loading from "../components/Loading";
-import Payment from "../pages/dashboard/my-cart/sections/Payment";
+import Payment from "../pages/dashboard/payment/Payment";
 
 const router = createBrowserRouter([
       {

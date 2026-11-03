@@ -12,7 +12,7 @@ const My_cart_items = () => {
       const axios_secure = useAxiosSecure();
 
       // total price
-      const [formatted_price] = useTotalPrice();
+      const total_price = useTotalPrice();
 
       const handle_delete_cart_item = (id) => {
             Swal.fire({
@@ -48,7 +48,7 @@ const My_cart_items = () => {
                                     Total items: {cart.length}
                               </h1>
                               <h1 className="text-3xl">
-                                    Total Price: {formatted_price}
+                                    Total Price: ${total_price}
                               </h1>
                               <Link
                                     to={"/dashboard/my-cart/payment"}

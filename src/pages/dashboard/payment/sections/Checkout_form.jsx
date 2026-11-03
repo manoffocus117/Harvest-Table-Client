@@ -1,28 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import useAxiosSecure from "./../../../../hooks/useAxiosSecure";
+import useCart from "../../../../hooks/useCart";
 import useTotalPrice from "../../../../hooks/useTotalPrice";
 
 const Checkout_form = () => {
-      const [error, set_error] = useState("");
-      const [clientSecret, setClientSecret] = useState("");
-
       const stripe = useStripe();
       const elements = useElements();
 
-      const axios_secure = useAxiosSecure();
+      const [cart] = useCart();
       const total_price = useTotalPrice();
 
-      useEffect(() => {
-            axios_secure
-                  .post("/payment", { price: total_price })
-                  .then((res) => {
-                        console.log(res.data.clientSecret);
-                        setClientSecret(res.data.clientSecret);
-                  });
-      }, [axios_secure, total_price]);
-
-      const handle_submit = async (event) => {
+      const handle_checkout = async (event) => {
             event.preventDefault();
 
             if (!stripe || !elements) {
@@ -30,8 +18,7 @@ const Checkout_form = () => {
             }
 
             const card = elements.getElement(CardElement);
-
-            if (!card) {
+            if (card === null) {
                   return;
             }
 
@@ -39,23 +26,26 @@ const Checkout_form = () => {
                   type: "card",
                   card,
             });
-
             if (error) {
-                  console.log("payment error", error);
-                  set_error(error.message);
+                  console.log("[error]", error);
             } else {
-                  console.log("payment method", paymentMethod);
-                  set_error("");
+                  console.log("[PaymentMethod]", paymentMethod);
             }
       };
+
       return (
-            <>
-                  <form
-                        onSubmit={handle_submit}
-                        className="space-y-10 border p-10 rounded-lg"
-                  >
+            <div className="w-140 mx-auto bg-white p-10 rounded-2xl">
+                  <div className="flex flex-row items-center justify-between mb-10">
+                        <h1 className="text-2xl">
+                              Total Items : {cart.length}
+                        </h1>
+                        <h1 className="text-2xl">
+                              Total Price : ${total_price}
+                        </h1>
+                  </div>
+                  <span className="divider mb-5"></span>
+                  <form onSubmit={handle_checkout}>
                         <CardElement
-                              className="w-100"
                               options={{
                                     style: {
                                           base: {
@@ -64,24 +54,23 @@ const Checkout_form = () => {
                                                 "::placeholder": {
                                                       color: "#aab7c4",
                                                 },
-                                                width: "400px",
                                           },
                                           invalid: {
                                                 color: "#9e2146",
                                           },
                                     },
                               }}
+                              className="border p-4 rounded"
                         />
-                        <p className="text-red-500">{error}</p>
                         <button
+                              disabled={!stripe}
                               type="submit"
-                              disabled={!stripe || !clientSecret}
-                              className="btn btn-primary text-white"
+                              className="btn btn-primary text-white mt-4"
                         >
                               Pay
                         </button>
                   </form>
-            </>
+            </div>
       );
 };
 

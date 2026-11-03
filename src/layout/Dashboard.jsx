@@ -136,7 +136,7 @@ const Dashboard = () => {
                               </menu>
                         </aside>
                         {/* dashboard main content */}
-                        <div className="col-span-6 bg-base-300 p-4 md:p-10 border border-gray-300 md:border-l-0 dashboard-right-border-radius md:overflow-y-auto custom-scrollbar">
+                        <div className="col-span-6 bg-base-200 p-4 md:p-10 border border-gray-300 md:border-l-0 dashboard-right-border-radius md:overflow-y-auto custom-scrollbar">
                               <Outlet />
                         </div>
                   </section>
